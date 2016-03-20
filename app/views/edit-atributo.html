@@ -1,0 +1,54 @@
+<div class="margenTop">
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-xs-12">
+    <div class="panel panel-primary  drop-shadow" style="width:40%;height:250px;  margin-left:27%; margin-top:5%">
+    <div class="panel-heading"><h>{{tiTulo}}</h></div>
+        <form method="post" name="myFormCaracterizacion"  novalidate>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12 col-lg-12 col-xs-12">
+                 <label>NOMBRE ATRIBUTO</label>         
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-lg-12 col-xs-12">
+                  <input id="idAtrNomb" name="name" ng-model="Datos.ATR_NOMB" type= "text" class= "form-control" placeholder="Nuevo Atributo" autofocus required/>
+           
+              </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 col-lg-12 col-xs-12">
+                 <label>CARACTERIZACIÓN</label>         
+              </div>
+            </div>
+            <div class="row">
+             <div class="col-md-12 col-lg-12 col-xs-12">
+             <select class="form-control"  ng-model="Datos.ATR_CARA_CODI" 
+                    ng-options="opt.CAR_CODI as opt.CAR_NOMB for opt in listCaracterizacion" required>
+            </select>
+            </div>
+
+            </div>
+            <div class="row" style="margin-top: 30px">              
+               <div class="col-md-offset-7"> 
+                      <button  ng-click= "save(Datos)"  ng-disabled=" myFormCaracterizacion.$invalid"              
+                      class="btn btn-primary">{{buttonText}}</button>
+                      <button  ng-click= "volver()"               
+                    class="btn btn-primary">Cancelar</button>
+              </div>
+
+            </div>
+
+          </div>                
+        </form>  
+
+    </div>
+  </div>
+</div>  
+</div>
+
+
+
+
+ 

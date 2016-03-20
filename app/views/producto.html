@@ -1,0 +1,17 @@
+<div class="margenTop">
+<h3>PRODUCTOS</h3>
+<div ng-controller="ListControllerproducto as list">
+      
+ <my-modalproducto></my-modalproducto> 
+  
+    <div id="custom-toolbarproducto">
+     <div class="form-inline" role="form">    
+        <a ng-click="list.btnNovoClick()" target="_self" class="btn btn-default btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Nuevo</a>
+     </div>
+    </div>
+{{datos}}
+   <table  id="tableproducto" init-tablaproducto="options">
+   </table>
+
+ </div>
+</div>

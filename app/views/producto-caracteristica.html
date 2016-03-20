@@ -1,0 +1,73 @@
+<div class="margenTop">
+	
+	<div class="row">
+		
+		<div class="col-md-5 col-lg-5 col-xs-5">
+			<h3>PRODUCTOS</h3>
+		</div>
+		
+		<div class="col-md-5 col-lg-5 col-xs-5">
+			<h3>CARACTERIZACIONES</h3>
+		</div>		
+	</div>
+
+	<div class="row">
+		<div class="col-md-5 col-lg-5 col-xs-5">
+			<select class="form-control"  ng-model="selProducto" 
+          ng-options="producto as producto.Nombre for producto in listProducto" required>
+          </select>
+		</div>
+		
+		<div class="col-md-5 col-lg-5 col-xs-5">		
+			<select class="form-control"  ng-model="selCaracterizacion" 
+          ng-options="caracterizacion as caracterizacion.CAR_NOMB for caracterizacion in listCaracteristica" required></select>		
+		</div>		
+
+	</div>
+	<div class="row" style="margin-top:20px">
+		<div class="col-md-2 col-lg-2 col-xs-2">
+			<button type="button" class="btn btn-primary" ng-click="onClicAgregar(selProducto,selCaracterizacion)">Agregar</button>
+		</div>
+	</div>
+	
+	<div class="row" style="margin-top:20px">
+		<div class="col-md-12 col-lg-12 col-xs-12">           
+		   <jqx-panel jqx-settings="settingsPanel">		     
+		     <ul ng-repeat="productoCaracteristica in listProductoCaracteristica" class="list-group">		
+			<li class="list-group-item">
+				<div class="row">
+					<div class="col-md-5 col-lg-5 col-xs-5">
+						<label style="color:blue;font-size: 13px;font-weight: 100">PRODUCTO</label>
+					</div>
+					<div class="col-md-5 col-lg-5 col-xs-5">
+						<label style="color:blue;font-size: 13px;font-weight: 100">CARACTERIZACIÓN</label>
+					</div>
+					<div class="col-md-2 col-lg-2 col-xs-2">
+						<label style="color:red;font-size: 13px;font-weight: 300">Eliminar</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-5 col-lg-5 col-xs-5">
+						<label style="font-size: 12px;font-weight: 100">{{productoCaracteristica.Nombre}}</label>
+					</div>
+					<div class="col-md-5 col-lg-5 col-xs-5">
+						<label style="font-size: 12px;font-weight: 100">{{productoCaracteristica.CAR_NOMB}}</label>
+					</div>
+					<div class="col-md-2 col-lg-2 col-xs-2">
+						<jqx-button jqx-settings="jqxButtonsSettings"  ng-click="onClicEliminar(productoCaracteristica,this)">  <i class="glyphicon glyphicon-ban-circle" style="cursor:pointer"  ></i> </jqx-button>
+					</div>
+				</div>	
+
+			</li>			     	     
+	     </ul>		   
+	</jqx-panel>
+	<div class="row" style="margin-top: 10px">
+		<div class="col-md-offset-9 col-lg-offset-9 col-xs-offset-9">
+				<button type="button" class="btn btn-success" ng-click="onClicGuardar()">Guadar</button>
+					</div>
+    	</div>		
+
+</div>
+	</div>
+	
+

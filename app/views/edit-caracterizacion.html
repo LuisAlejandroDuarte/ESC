@@ -1,0 +1,42 @@
+
+<div class="margenTop">
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-xs-12">
+    <div class="panel panel-primary  drop-shadow" style="width:40%;height:200px;  margin-left:27%; margin-top:5%">
+    <div class="panel-heading"><h>{{tiTulo}}</h></div>
+        <form method="post" name="myFormCaracterizacion"  novalidate>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12 col-lg-12 col-xs-12">
+                 <label>NOMBRE</label>         
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-lg-12 col-xs-12">
+                  <input name="name" ng-model="Datos.CAR_NOMB" type= "text" class= "form-control" placeholder="Nueva Caracterización" autofocus required/>
+           
+              </div>
+            </div>
+            <div class="row" style="margin-top: 30px">              
+               <div class="col-md-offset-7"> 
+                      <button  ng-click= "save(Datos)"  ng-disabled=" myFormCaracterizacion.$invalid"              
+                      class="btn btn-primary">{{buttonText}}</button>
+                      <button  ng-click= "volver()"               
+                    class="btn btn-primary">Cancelar</button>
+              </div>
+
+            </div>
+
+          </div>                
+        </form>  
+
+    </div>
+  </div>
+</div>  
+</div>
+
+
+
+
+ 

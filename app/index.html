@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html > 
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CACAO</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">  --> 
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="module/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="module/bootstrap/css/bootstrap.css.map">
+  <link rel="stylesheet" href="module/bootstrap/css/bootstrap-theme.css">
+  <link rel="stylesheet" href="module/bootstrap/css/bootstrap-theme.css.map">
+  <link rel="stylesheet" href="module/bootstrap/css/bootstrap-theme.min.css">
+  
+  <link rel="stylesheet" href="module/bootstrap/fonts/glyphicons-halflings-regular.eot">
+  <link rel="stylesheet" href="module/bootstrap/fonts/glyphicons-halflings-regular.svg">
+  <link rel="stylesheet" href="module/bootstrap/fonts/glyphicons-halflings-regular.ttf">
+  <link rel="stylesheet" href="module/bootstrap/fonts/glyphicons-halflings-regular.woff">
+  <link rel="stylesheet" href="module/bootstrap/fonts/glyphicons-halflings-regular.woff2">
+
+  <link rel="stylesheet" href="module/bootstraptable/bootstrap-table.css"/>
+  <!-- <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css"> -->    
+  <link rel="stylesheet" href="module/jqwidgets/styles/jqx.base.css">    
+
+   <link rel="stylesheet" href="module/font-awesome/css/font-awesome.min.css">
+
+  <!-- <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script> -->
+
+
+</head>
+<body  ng-app="myApp">
+<div ng-controller="navCtrl">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">     
+        <li class="dropdown" ng-show=usrConectado.estaConectado>
+          <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#/caracterizacion">Caracterización</a></li>          
+            <li><a href="#/atributo">Atributos</a></li>          
+            <li><a href="#/entidad">Entidad</a></li>          
+            <li><a href="#/producto">Producto</a></li> 
+            <li><a href="#/producto-caracteristica">Producto Caracteristica</a></li>                      
+          </ul>
+        </li>
+      </ul>     
+      <ul class="nav navbar-nav navbar-right">     
+        <li class="dropdown">
+          <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuario <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a >Cambiar Contraseña</a></li>
+            <li><a ng-click="onClicSalir()" >Salir</a></li>            
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <div class="container">
+    <div ng-view=""></div>
+  </div>
+ </div> 
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="module/jquery/jquery-2.2.2.min.js"></script>    
+  <script src="module/angular/angular.js"></script>
+  <script src="module/angular/angular-cookies.min.js"></script>
+  <script src="module/bootstrap/js/bootstrap.js"></script> 
+  <script src="module/bootstrap/js/npm.js"></script> 
+  <script src="module/bootstraptable/bootstrap-table.js"></script> 
+  <script src="module/angular/angular-route.js"></script>  
+  <script src="module/angular/angular-resource.js"></script>  
+  <script src="module/bootstraptable/bootstrap-table-es-ES.js"></script>
+  <script src="module/jqwidgets/jqxcore.js"></script>  
+  <script src="module/jqwidgets/jqxangular.js"></script>
+  <script src="module/jqwidgets/jqxscrollbar.js"></script>  
+  <script src="module/jqwidgets/jqxbuttons.js"></script>  
+  <script src="module/jqwidgets/jqxpanel.js"></script>  
+
+  <script src="app.js"></script>
+  <script src="services/factoria.js"></script>
+  <script src="controladores/inicio.js"></script>
+  <script src="controladores/nav.js"></script>
+  <script src="controladores/menu.js"></script>
+  <script src="controladores/caracterizacion.js"></script>
+  <script src="controladores/atributo.js"></script>
+  <script src="controladores/edit-atributo.js"></script>
+  <script src="controladores/producto.js"></script>
+  <script src="controladores/edit-producto.js"></script>
+  <script src="controladores/edit-caracterizacion.js"></script>
+  <script src="controladores/entidad.js"></script>
+  <script src="controladores/edit-entidad.js"></script>
+  <script src="controladores/producto-caracteristica.js"></script>
+<!--   <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script> -->
+</body>
+</html>
