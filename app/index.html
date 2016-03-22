@@ -17,9 +17,9 @@
   
   <link rel="stylesheet" href="module/bootstrap/fonts/glyphicons-halflings-regular.eot">
   <link rel="stylesheet" href="module/bootstrap/fonts/glyphicons-halflings-regular.svg">
-  <link rel="stylesheet" href="module/bootstrap/fonts/glyphicons-halflings-regular.ttf">
-  <link rel="stylesheet" href="module/bootstrap/fonts/glyphicons-halflings-regular.woff">
-  <link rel="stylesheet" href="module/bootstrap/fonts/glyphicons-halflings-regular.woff2">
+  <link rel="stylesheet" type="application/font-ttf" href="module/bootstrap/fonts/glyphicons-halflings-regular.ttf">
+  <link rel="stylesheet" type="application/font-woff" href="module/bootstrap/fonts/glyphicons-halflings-regular.woff">
+  <link rel="stylesheet" type="application/font-woff" href="module/bootstrap/fonts/glyphicons-halflings-regular.woff2">
 
   <link rel="stylesheet" href="module/bootstraptable/bootstrap-table.css"/>
   <!-- <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css"> -->    
@@ -48,6 +48,7 @@
             <li><a href="#/atributo">Atributos</a></li>          
             <li><a href="#/entidad">Entidad</a></li>          
             <li><a href="#/producto">Producto</a></li> 
+            <li><a href="#/evento">Evento</a></li> 
             <li><a href="#/producto-caracteristica">Producto Caracteristica</a></li>                      
           </ul>
         </li>
@@ -84,12 +85,17 @@
   <script src="module/bootstraptable/bootstrap-table.js"></script> 
   <script src="module/angular/angular-route.js"></script>  
   <script src="module/angular/angular-resource.js"></script>  
-  <script src="module/bootstraptable/bootstrap-table-es-ES.js"></script>
+  <script src="module/bootstraptable/bootstrap-table-es-ES.js"></script>  
   <script src="module/jqwidgets/jqxcore.js"></script>  
   <script src="module/jqwidgets/jqxangular.js"></script>
   <script src="module/jqwidgets/jqxscrollbar.js"></script>  
   <script src="module/jqwidgets/jqxbuttons.js"></script>  
   <script src="module/jqwidgets/jqxpanel.js"></script>  
+  <script src="module/jqwidgets/jqxcalendar.js"></script>  
+  <script src="module/jqwidgets/jqxdatetimeinput.js"></script>  
+<script type="text/javascript" src="module/jqwidgets/globalization/globalize.js"></script>
+ <script type="text/javascript" src="module/jqwidgets/globalization/globalize.culture.es-ES.js"></script>
+
 
   <script src="app.js"></script>
   <script src="services/factoria.js"></script>
@@ -105,6 +111,8 @@
   <script src="controladores/entidad.js"></script>
   <script src="controladores/edit-entidad.js"></script>
   <script src="controladores/producto-caracteristica.js"></script>
+  <script src="controladores/evento.js"></script>
+  <script src="controladores/edit-evento.js"></script>
 <!--   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script> -->
 </body>

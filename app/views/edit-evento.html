@@ -1,0 +1,85 @@
+<div class="margenTop">
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-xs-12">
+    <div class="panel panel-primary " style="width:50%;height:360px;  margin-left:27%; margin-top:5%">
+    <div class="panel-heading "><h>{{tiTulo}}</h></div>
+        <form method="post" name="myFormEvento"  novalidate>
+          <div class="panel-body">         
+            <div class="row">
+              <div class="col-md-6 col-lg-6 col-xs-6">
+                 <label>EVENTO</label>         
+              </div>
+              <div class="col-md-6 col-lg-6 col-xs-6">
+                 <label>DIRECCIÓN</label>         
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-lg-6 col-xs-6">
+                  <input id="idAtrNomb" name="name" ng-model="Datos.EVE_NOMB" type= "text" class= "form-control" placeholder="Evento" autofocus required/>           
+              </div>
+              <div class="col-md-6 col-lg-6 col-xs-6">
+                  <input id="idAtrDire" name="name" ng-model="Datos.EVE_DIRE" type= "text" class= "form-control" placeholder="Dirección" autofocus required/>           
+              </div>
+            </div>
+            <div class="row" style="margin-top:20px">
+              <div class="col-md-6 col-lg-6 col-xs-6">
+                 <label>Fecha Inicio</label>         
+              </div>
+              <div class="col-md-6 col-lg-6 col-xs-6">
+                 <label>Fecha Termina</label>         
+              </div>
+            </div>            
+             <div class="row" >
+              <div class="col-md-6 col-lg-6 col-xs-6">
+                 <jqx-date-time-input  ng-model="Datos.EVE_FECH_INIC" jqx-settings="settingsDate" required>
+                 </jqx-date-time-input>
+              </div>
+              <div class="col-md-5 col-lg-5 col-xs-5">
+                 <jqx-date-time-input ng-disabled="!habilitarFecha" ng-model="Datos.EVE_FECH_FINA" jqx-settings="settingsDate">
+                 </jqx-date-time-input>       
+              </div>
+              <div class="col-md-1 col-lg-1 col-xs-1" style="margin-top: -5px;margin-left: -5px">
+                <div class="checkbox"  title="Habiliar Fecha"> 
+                <label>
+                    <input type="checkbox" ng-change="Datos.EVE_FECH_FINA = !habilitarFecha ? '' : Datos.EVE_FECH_FINA" ng-model="habilitarFecha">
+                </label>   
+                </div>
+              </div>
+             </div>
+             <div class="row" style="margin-top:20px">
+              <div class="col-md-6 col-lg-6 col-xs-6">
+                 <label>Seleccionar Documento</label>
+                  <span class="fileinput-button glyphicon glyphicon-file" ng-class="{disabled: disabled}" style="margin-left:20px"><input type="file" name="files" onchange="angular.element(this).scope().uploadFile(this)" accept="PDF/PDF">                                 
+                </span>
+              </div>
+             </div>      
+             <div class="row" style="margin-top:20px">            
+              <div class="col-md-12 col-lg-12 col-xs-12">
+               <label style="font-weight: 100">Documento seleccionado : {{nombreArchivo}}</label>
+              </div>
+             </div>      
+
+            </div>
+            <div class="row" style="margin-top: 10px">              
+               <div class="col-md-offset-8"> 
+                      <button  ng-click= "save(Datos)"  ng-disabled=" myFormEvento.$invalid"              
+                      class="btn btn-primary">{{buttonText}}</button>
+                      <button  ng-click= "volver()"               
+                    class="btn btn-primary">Cancelar</button>
+              </div>
+
+            </div>
+
+          </div>                
+        </form>  
+
+    </div>
+  </div>
+</div>  
+</div>
+
+
+
+
+ 

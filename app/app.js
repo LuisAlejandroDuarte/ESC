@@ -111,6 +111,26 @@ angular.module('myApp', ['ngRoute','ngCookies','ngResource','jqwidgets'])
         controller: 'productoCaracteristicaCtrl'
     });  
 
+  $routeProvider.when('/evento', {
+        templateUrl: 'views/evento.html',
+        controller: 'eventoCtrl'
+    });      
+
+  $routeProvider.when('/edit-evento/:idEvento', {
+        templateUrl: 'views/edit-evento.html',
+        controller: 'edit-EventoCtrl',
+         resolve: {
+          datosEvento: function($route,Execute){
+            var eventoID = parseInt($route.current.params.idEvento);           
+
+               return    Execute.execute.query({Accion: 'S',
+                         SQL: "SELECT EVE_CODI,EVE_DOCU, EVE_NOMB,EVE_DIRE,EVE_FECH_INIC,EVE_FECH_FINA  FROM ESC_EVEN WHERE EVE_CODI=" + eventoID });
+
+          }
+        }
+    });
+
+
    $routeProvider.when('/menu', {
         templateUrl: 'views/menu.html',
         controller: 'MenuCtrl'

@@ -1,0 +1,16 @@
+<div class="margenTop">
+<h3>EVENTOS</h3>
+<div ng-controller="ListControllerevento as list">
+      
+ <my-modalevento></my-modalevento> 
+  
+    <div id="custom-toolbarevento">
+     <div class="form-inline" role="form">    
+        <a ng-click="list.btnNovoClick()" target="_self" class="btn btn-default btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Nuevo</a>
+     </div>
+    </div>
+   <table  id="tableevento" init-tablaevento="options">
+   </table>
+
+ </div>
+</div>
