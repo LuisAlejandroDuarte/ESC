@@ -3,14 +3,14 @@
 	// Remove "//" to uncomment settings directive
 
 	"default": {
- 
+  
 	"host": "ftp.giaunad.com",
 		"username": "javiermedina",  // or null for anonymous login
 		"password": "giaunad2016",
 		"path": "/public_html/cacao",
-		"upload_on_save": false, // set *false* if you do not want to upload on save!
+		"upload_on_save": true, // set *false* if you do not want to upload on save!
 
-		// "port": 21,
+		 "port": 21,
 		// "tls": false,
 		// "timeout": 30, // [seconds]
 

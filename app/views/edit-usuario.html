@@ -1,0 +1,92 @@
+<div class="margenTop">
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-xs-12">
+    <div class="panel panel-primary  drop-shadow" style="height:330px; margin-top:5%">
+    <div class="panel-heading"><h>{{tiTulo}}</h></div>
+        <form method="post" name="myFormUsuario"  novalidate>
+          <div class="panel-body">
+            <div class="row" style="margin-top: 10px">
+              <div class="col-md-3 col-lg-3 col-xs-3">
+                 <label>NOMBRE</label>         
+              </div>
+              <div class="col-md-3 col-lg-3 col-xs-3">
+                 <label>APELLIDO</label>         
+              </div>
+              <div class="col-md-3 col-lg-3 col-xs-3">
+                 <label>DIRECCIÓN</label>         
+              </div>
+              <div class="col-md-3 col-lg-3 col-xs-3">
+                 <label>TELÉFONO</label>         
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 col-lg-3 col-xs-3">
+                  <input id="idPerNomb" name="name" ng-model="Datos.PER_NOMB" type= "text" class= "form-control" placeholder="Nombre" autofocus required/>
+           
+              </div>
+                <div class="col-md-3 col-lg-3 col-xs-3">
+                  <input id="idPerApel" name="apel" ng-model="Datos.PER_APEL" type= "text" class= "form-control" placeholder="Apellido" autofocus required/>
+           
+              </div>
+              <div class="col-md-3 col-lg-3 col-xs-3">
+                  <input id="idPerDire" name="dire" ng-model="Datos.PER_DIRE" type= "text" class= "form-control" placeholder="Dirección" autofocus />           
+              </div>
+              <div class="col-md-3 col-lg-3 col-xs-3">
+                  <input id="idPerTele" name="tele" ng-model="Datos.PER_TELE" type= "text" class= "form-control" placeholder="Teléfono" autofocus />           
+              </div>
+            </div>
+            <div class="row" style="margin-top: 10px">
+              <div class="col-md-3 col-lg-3 col-xs-3">
+                 <label>TIPO</label>         
+              </div>
+              <div class="col-md-3 col-lg-3 col-xs-3">
+                 <label>USUARIO</label>         
+              </div>
+              <div class="col-md-3 col-lg-3 col-xs-3">
+                 <label>CLAVE</label>         
+              </div>              
+            </div>
+            <div class="row">
+             <div class="col-md-3 col-lg-3 col-xs-3">
+             <select class="form-control" ng-change="onChangeTipoJuez()"  ng-model="Datos.PER_TIPO" id="idTipo"
+                    ng-options="opt.Id as opt.Nombre for opt in listTiposUsuario" required>
+            </select>
+            </div>
+             <div class="col-md-3 col-lg-3 col-xs-3">
+                  <input id="idPerUser" name="user" ng-model="Datos.PER_USER" type= "text" class= "form-control" placeholder="Usaurio" autofocus required/>           
+              </div>
+              <div class="col-md-3 col-lg-3 col-xs-3">
+                  <input id="idPerPass" type="password" name="pass" ng-model="Datos.PER_PASS" type= "text" class= "form-control" placeholder="Pass" autofocus />           
+              </div>
+            </div>
+            <div class="row" style="margin-top: 10px" ng-show="showTipoJuez">
+              <div class="col-md-3 col-lg-3 col-xs-3">
+                 <label>TIPO JUEZ</label><br/>
+                <select class="form-control"  ng-model="Datos.PER_TIPO_JUEZ"  id="idTipo" 
+                    ng-options="opt.TJU_CODI as opt.TJU_NOMB for opt in listTipoJuez" >
+                  </select>         
+             </div>
+            </div>        
+            <div class="row" style="margin-top: 0px">                               
+               <div class="col-md-offset-10 col-lg-offset-10"> 
+                      <button  ng-click= "save(Datos)"  ng-disabled=" myFormUsuario.$invalid"              
+                      class="btn btn-primary">{{buttonText}}</button>
+                      <button  ng-click= "volver()"               
+                    class="btn btn-primary">Cancelar</button>
+              </div>
+
+            </div>
+            
+          </div>                
+        </form>  
+
+    </div>
+  </div>
+</div>  
+</div>
+
+
+
+
+ 

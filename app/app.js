@@ -129,13 +129,48 @@ angular.module('myApp', ['ngRoute','ngCookies','ngResource','jqwidgets'])
           }
         }
     });
+$routeProvider.when('/usuario', {
+        templateUrl: 'views/usuario.html',
+        controller: 'usuarioCtrl'
+    });      
+
+$routeProvider.when('/edit-usuario/:idUsuario', {
+        templateUrl: 'views/edit-usuario.html',
+        controller: 'edit-UsuarioCtrl',
+         resolve: {
+          datosUsuario: function($route,Execute){
+            var usuarioID = parseInt($route.current.params.idUsuario);           
+
+               return    Execute.execute.query({Accion: 'S',
+                         SQL: "SELECT PER_CODI,PER_NOMB ,PER_APEL,PER_DIRE,PER_USER,PER_TELE, " +
+                        " PER_TIPO,PER_TIPO_JUEZ  " +
+                        " FROM ESC_PERS WHERE PER_CODI=" + usuarioID });
+
+          }
+        }
+    });
+  
+$routeProvider.when('/producto-evento', {
+        templateUrl: 'views/producto-evento.html',
+        controller: 'productoEventoCtrl'
+    }); 
+
+$routeProvider.when('/juez-producto-evento', {
+        templateUrl: 'views/juez-producto-evento.html',
+        controller: 'juezProductoEventoCtrl'
+    }); 
 
 
    $routeProvider.when('/menu', {
         templateUrl: 'views/menu.html',
         controller: 'MenuCtrl'
     });  
-     
+   
+
+
+
+
+
 }])
 
 

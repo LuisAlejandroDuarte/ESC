@@ -162,7 +162,11 @@
                 valign: 'middle',
                 width: 40,                
                  formatter: function(value, row, index) {
-                    return '<a class="ver ml10 btn btn-default btn-xs" title="Ver Documento"><span class="glyphicon glyphicon-eye-open"></span></a>';
+                    if (value!="undefined")
+                    {
+                        return '<a class="ver ml10 btn btn-default btn-xs" title="Ver Documento"><span class="glyphicon glyphicon-eye-open"></span></a>';
+                    }
+                   
                  },
                  events:  window.operateEvents = {
                     'click  .ver':function (e, value, row, index) {

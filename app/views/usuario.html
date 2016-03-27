@@ -1,0 +1,17 @@
+<div class="margenTop">
+<h3>USUARIOS</h3>
+<div ng-controller="ListControllerusuario as list">
+      
+ <my-modalusuario></my-modalusuario> 
+  
+    <div id="custom-toolbarusuario">
+     <div class="form-inline" role="form">    
+        <a ng-click="list.btnNovoClick()" target="_self" class="btn btn-default btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span> Nuevo</a>
+     </div>
+    </div>
+{{datos}}
+   <table  id="tableusuario" init-tablausuario="options">
+   </table>
+
+ </div>
+</div>

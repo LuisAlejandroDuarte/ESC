@@ -3,11 +3,19 @@
 angular.module('myApp')
 
 .controller('edit-EventoCtrl', ['$scope','$location','datosEvento','Execute','$route','$window', function($scope,$location,datosEvento,Execute,$route,$window){
-	$scope.settingsDate =
+	$scope.settingsDateIni =
 	{
 		culture: 'es-ES',
 		formatString: 'dd-MMM-yyyy',
 		value :null	
+	}	
+
+	$scope.settingsDateFin =
+	{
+		culture: 'es-ES',
+		formatString: 'dd-MMM-yyyy',
+		value :null,
+		min:null	
 	}	
 
 	//guarda el nombre actual
@@ -35,7 +43,9 @@ angular.module('myApp')
 	  		$scope.Datos.EVE_FECH_FINA=null;
 	  	}
 	  	else
-	  			$scope.habilitarFecha=true;
+	  	{
+	  			$scope.habilitarFecha=true;	  		
+	  	}
 
 
 	  	NombreActual = datos[0].EVE_NOMB;

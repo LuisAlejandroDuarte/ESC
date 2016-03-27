@@ -1,0 +1,98 @@
+<div class="margenTop">
+	
+	<div class="row">
+		
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<h5>PRODUCTOS</h5>
+		</div>		
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<h5>EVENTOS</h5>
+		</div>		
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<h5>LÍDERES</h5>
+		</div>		
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<h5>FECHA</h5>
+		</div>		
+	</div>
+
+	<div class="row">
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<select class="form-control"  ng-model="selProducto" 
+          ng-options="producto as producto.PRO_NOMB for producto in listProducto" required>
+          </select>
+		</div>
+		
+		<div class="col-md-3 col-lg-3 col-xs-3">		
+			<select class="form-control"  ng-model="selEvento" 
+          ng-options="evento as evento.EVE_NOMB for evento in listEvento" required></select>		
+		</div>		
+		<div class="col-md-3 col-lg-3 col-xs-3">		
+			<select class="form-control"  ng-model="selLider" 
+          ng-options="lider as lider.PER_NOMB for lider in listLider" required></select>		
+		</div>	
+		<div class="col-md-2 col-lg-2 col-xs-3">
+		<jqx-date-time-input  ng-model="selFecha" jqx-settings="settingsDate">
+                 </jqx-date-time-input>
+		</div>	
+
+	</div>
+	<div class="row" style="margin-top:20px">
+		<div class="col-md-2 col-lg-2 col-xs-2">
+			<button type="button" class="btn btn-primary" ng-click="onClicAgregar(selProducto,selEvento,selLider,selFecha)">Agregar</button>
+		</div>
+	</div>
+	
+	<div class="row" style="margin-top:20px">
+		<div class="col-md-12 col-lg-12 col-xs-12">           
+		   <jqx-panel jqx-settings="settingsPanel">		     
+		     <ul ng-repeat="productoEvento in listProductoEvento" class="list-group">		
+			<li class="list-group-item">
+				<div class="row">
+					<div class="col-md-3 col-lg-3 col-xs-3">
+						<label style="color:blue;font-size: 13px;font-weight: 100">PRODUCTO</label>
+					</div>
+					<div class="col-md-3 col-lg-3 col-xs-3">
+						<label style="color:blue;font-size: 13px;font-weight: 100">EVENTO</label>
+					</div>
+					<div class="col-md-3 col-lg-3 col-xs-3">
+						<label style="color:blue;font-size: 13px;font-weight: 100">LIDER</label>
+					</div>
+					<div class="col-md-2 col-lg-2 col-xs-2">
+						<label style="color:blue;font-size: 13px;font-weight: 100">FECHA</label>
+					</div>
+					<div class="col-md-1 col-lg-1 col-xs-1">
+						<label style="color:red;font-size: 13px;font-weight: 300">Eliminar</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 col-lg-3 col-xs-3">
+						<label style="font-size: 12px;font-weight: 100">{{productoEvento.PRO_NOMB}}</label>
+					</div>
+					<div class="col-md-3 col-lg-3 col-xs-3">
+						<label style="font-size: 12px;font-weight: 100">{{productoEvento.EVE_NOMB}}</label>
+					</div>
+					<div class="col-md-3 col-lg-3 col-xs-3">
+						<label style="font-size: 12px;font-weight: 100">{{productoEvento.PER_NOMB}}</label>
+					</div>
+					<div class="col-md-2 col-lg-2 col-xs-2">
+						<label style="font-size: 12px;font-weight: 100">{{productoEvento.PRE_FECH}}</label>
+					</div>
+					<div class="col-md-1 col-lg-1 col-xs-1">
+						<jqx-button jqx-settings="jqxButtonsSettings"  ng-click="onClicEliminar(productoEvento,this)">  <i class="glyphicon glyphicon-ban-circle" style="cursor:pointer"  ></i> </jqx-button>
+					</div>
+				</div>	
+
+			</li>			     	     
+	     </ul>		   
+	</jqx-panel>
+	<div class="row" style="margin-top: 10px">
+		<div class="col-md-offset-10 col-lg-offset-10 col-xs-offset-10">
+				<button type="button" class="btn btn-success" ng-click="onClicGuardar()">Guadar</button>
+					</div>
+    	</div>		
+
+</div>
+	</div>
+	
+
