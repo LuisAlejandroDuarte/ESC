@@ -40,8 +40,8 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">     
-        <li class="dropdown" ng-show=usrConectado.estaConectado>
+      <ul class="nav navbar-nav" ng-show=usrConectado.estaConectado>     
+        <li class="dropdown" >
           <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#/caracterizacion">Caracterización</a></li>          
@@ -53,6 +53,14 @@
             <li><a href="#/producto-caracteristica">Producto Caracteristica</a></li>                      
             <li><a href="#/producto-evento">Producto Evento</a></li>
             <li><a href="#/juez-producto-evento">Juez Producto Evento</a></li>                      
+          </ul>
+        </li>
+        <li class="dropdown" >
+          <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Evaluación <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+             <li><a href="#/parametroEvaluacion">Parámetro Evaluación</a></li>  
+             <li><a href="#/escalaEvaluacion">Escala Evaluación</a></li>  
+             <li><a href="#/productoEventoAtributo">Producto Evento Atributo</a></li>  
           </ul>
         </li>
       </ul>     
@@ -96,8 +104,8 @@
   <script src="module/jqwidgets/jqxpanel.js"></script>  
   <script src="module/jqwidgets/jqxcalendar.js"></script>  
   <script src="module/jqwidgets/jqxdatetimeinput.js"></script>  
-<script type="text/javascript" src="module/jqwidgets/globalization/globalize.js"></script>
- <script type="text/javascript" src="module/jqwidgets/globalization/globalize.culture.es-ES.js"></script>
+  <script type="text/javascript" src="module/jqwidgets/globalization/globalize.js"></script>
+  <script type="text/javascript" src="module/jqwidgets/globalization/globalize.culture.es-ES.js"></script>
 
 
   <script src="app.js"></script>
@@ -120,6 +128,11 @@
   <script src="controladores/edit-usuario.js"></script>
   <script src="controladores/producto-evento.js"></script>
   <script src="controladores/juez-producto-evento.js"></script>
+  <script src="controladores/parametroEvaluacion.js"></script>
+  <script src="controladores/edit-parametroEvaluacion.js"></script>
+  <script src="controladores/escalaEvaluacion.js"></script>
+  <script src="controladores/edit-escalaEvaluacion.js"></script>
+  <script src="controladores/producto-evento-atributo.js"></script>
 <!--   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script> -->
 </body>
