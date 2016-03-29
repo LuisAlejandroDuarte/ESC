@@ -37,7 +37,7 @@ var NombreActual;
 		 var insertar =
               {
                 Accion:"S",
-                SQL:"SELECT PEV_DESC FROM ESC_PARA_EVAL WHERE PEV_DESC='" + item.PEV_DESC + "'"
+                SQL:"SELECT PEV_DESC FROM ESC_PARA_EVAL WHERE PEV_DESC=" + item.PEV_DESC + ""
               }
             Execute.SQL(insertar).then(function(result) { 
             if (result.data[0]!=null && NombreActual!=result.data[0].PEV_DESC)
@@ -50,7 +50,7 @@ var NombreActual;
 						{
 						var datos ={
 			    			Accion:"I",
-			    			SQL:"INSERT INTO ESC_PARA_EVAL (PEV_DESC) VALUES ('" + item.PEV_DESC + "')"
+			    			SQL:"INSERT INTO ESC_PARA_EVAL (PEV_DESC) VALUES (" + item.PEV_DESC + ")"
 						}
 
 			 			Execute.SQL(datos).then(function(result) { 			 			
@@ -65,7 +65,7 @@ var NombreActual;
 					{
 						 datos ={
 			    		Accion:"U",
-			    		SQL:"UPDATE  ESC_PARA_EVAL set PEV_DESC='" + item.PEV_DESC + "' WHERE PEV_CONS=" + item.PEV_CONS + ""
+			    		SQL:"UPDATE  ESC_PARA_EVAL set PEV_DESC=" + item.PEV_DESC + " WHERE PEV_CONS=" + item.PEV_CONS + ""
 						}
 
 				 			Execute.SQL(datos).then(function(result) { 			 	
