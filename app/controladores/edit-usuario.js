@@ -42,7 +42,18 @@ angular.module('myApp')
 	  			}
 	  			$scope.listTipoJuez =[];
 	  			Execute.SQL(tipoJuez).then(function(result) { 			
-				$scope.listTipoJuez = result.data;	  		
+				  $scope.listTipoJuez = result.data;	  		
+
+				  var entidad ={
+				  	Accion:"S",
+				  	SQL:"SELECT ENT_CODI,ENT_NOMB FROM ESC_ENTI"
+				  }
+				  $scope.listEntidad =[];
+				  Execute.SQL(entidad).then(function(result) { 			
+				  	if (result.data[0]!=null)
+				  		$scope.listEntidad = result.data;
+				  });
+
 	  		});
 	  	
 
@@ -63,9 +74,13 @@ angular.module('myApp')
 
 	$scope.save = function(item)
 	{
-			var tj=null;
+			var tj=0; //Tipo Juez
+			var idEntidad=0; //Entidad
     			if (item.PER_TIPO==1)
+    			{
 					tj = $scope.Datos.PER_TIPO_JUEZ;
+					idEntidad = $scope.Datos.PER_ENTI_CODI;
+    			}
    			if (item.PER_CODI ==undefined)
 				{												
 					
@@ -73,10 +88,10 @@ angular.module('myApp')
 					var datos2 ={
 		    			Accion:"I",
 		    			SQL:"INSERT INTO ESC_PERS " +
-		    			" (PER_NOMB,PER_APEL,PER_DIRE,PER_TELE,PER_USER,PER_TIPO,PER_PASS,PER_TIPO_JUEZ) " +
+		    			" (PER_NOMB,PER_APEL,PER_DIRE,PER_TELE,PER_USER,PER_TIPO,PER_PASS " + (item.PER_TIPO==1? ",PER_TIPO_JUEZ,PER_ENTI_CODI":"") + ")" +
 		    			" VALUES ('" + item.PER_NOMB + "','" + item.PER_APEL + "', " + 
 		    			" '" + item.PER_DIRE + "','" + item.PER_TELE + "', " +
-		    			" '" + item.PER_USER + "'," + parseInt(item.PER_TIPO) + ",'" + item.PER_PASS + "','" + tj + "')"
+		    			" '" + item.PER_USER + "'," + parseInt(item.PER_TIPO) + ",'" + item.PER_PASS + "'" + (item.PER_TIPO==1? "," + tj + "," + idEntidad : "" ) + ")" 
 						}
 
 		 			Execute.SQL(datos2).then(function(result) { 					 			 					 		
@@ -90,32 +105,36 @@ angular.module('myApp')
 
 					
 					if (item.PER_PASS!=undefined && item.PER_PASS!="")
-					{
-					datos2 ={
-    					Accion:"U",
-    					SQL:"UPDATE  ESC_PERS set PER_NOMB='" + item.PER_NOMB + "', " + 
+					{					
+                    var SQL="UPDATE  ESC_PERS set " + (  idEntidad!=0 ? " PER_ENTI_CODI=" + idEntidad + ",":"") +
+    					" PER_NOMB='" + item.PER_NOMB + "', " + 
     					" PER_APEL= '"+  item.PER_APEL  + "', " +
     					" PER_DIRE='" + item.PER_DIRE + "', " +
     					" PER_TELE='" + item.PER_TELE + "', " +
     					" PER_USER='" + item.PER_USER + "', " + 
     					" PER_PASS='" + item.PER_PASS + "', "  +
-    					" PER_TIPO_JUEZ='" + tj + "', " +
-    					" PER_TIPO=" + parseInt(item.PER_TIPO) + " "  +
-    					" WHERE PER_CODI=" + item.PER_CODI + ""
+    					" PER_TIPO_JUEZ='" + tj + "', " +    					
+    					" PER_TIPO=" + parseInt(item.PER_TIPO) + " "  +     					
+    					" WHERE PER_CODI=" + item.PER_CODI + "";
+					datos2 ={
+    					Accion:"U",
+    					SQL:SQL
 						}	
 					}
 					else
 					{
- 						datos2 ={
-    					Accion:"U",
-    					SQL:"UPDATE  ESC_PERS set PER_NOMB='" + item.PER_NOMB + "', " + 
+						SQL="UPDATE  ESC_PERS set " + ( idEntidad!=0 ? " PER_ENTI_CODI=" + idEntidad + ",":"") +
+    					" PER_NOMB='" + item.PER_NOMB + "', " + 
     					" PER_APEL= '"+  item.PER_APEL  + "', " +
     					" PER_DIRE='" + item.PER_DIRE + "', " +
     					" PER_TELE='" + item.PER_TELE + "', " +
     					" PER_USER='" + item.PER_USER + "', " +
-    					" PER_TIPO_JUEZ='" + tj + "', " +
-    					" PER_TIPO=" + parseInt(item.PER_TIPO) + " " +
-    					" WHERE PER_CODI=" + item.PER_CODI + ""
+    					" PER_TIPO_JUEZ=" + tj + "," +  
+    					" PER_TIPO=" + parseInt(item.PER_TIPO) + ""  +   					
+    					" WHERE PER_CODI=" + item.PER_CODI + "";
+ 						datos2 ={
+    					Accion:"U",
+    					SQL:SQL
 						}
 					}
 

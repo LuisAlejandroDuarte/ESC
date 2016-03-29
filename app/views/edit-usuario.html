@@ -36,7 +36,7 @@
                   <input id="idPerTele" name="tele" ng-model="Datos.PER_TELE" type= "text" class= "form-control" placeholder="Teléfono" autofocus />           
               </div>
             </div>
-            <div class="row" style="margin-top: 10px">
+            <div class="row" style="margin-top: 10px">             
               <div class="col-md-3 col-lg-3 col-xs-3">
                  <label>TIPO</label>         
               </div>
@@ -53,6 +53,7 @@
                     ng-options="opt.Id as opt.Nombre for opt in listTiposUsuario" required>
             </select>
             </div>
+           
              <div class="col-md-3 col-lg-3 col-xs-3">
                   <input id="idPerUser" name="user" ng-model="Datos.PER_USER" type= "text" class= "form-control" placeholder="Usaurio" autofocus required/>           
               </div>
@@ -67,8 +68,14 @@
                     ng-options="opt.TJU_CODI as opt.TJU_NOMB for opt in listTipoJuez" >
                   </select>         
              </div>
+              <div class="col-md-6 col-lg-6 col-xs-6">
+                 <label>ENTIDAD</label> <br/>                
+                    <select class="form-control"   ng-model="Datos.PER_ENTI_CODI" id="idTipo"
+                    ng-options="opt.ENT_CODI as opt.ENT_NOMB for opt in listEntidad">
+                    </select>                
+              </div>
             </div>        
-            <div class="row" style="margin-top: 0px">                               
+            <div class="row" style="margin-top: 20px">                               
                <div class="col-md-offset-10 col-lg-offset-10"> 
                       <button  ng-click= "save(Datos)"  ng-disabled=" myFormUsuario.$invalid"              
                       class="btn btn-primary">{{buttonText}}</button>

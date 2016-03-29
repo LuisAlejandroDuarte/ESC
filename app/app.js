@@ -149,7 +149,7 @@ $routeProvider.when('/edit-usuario/:idUsuario', {
             var usuarioID = parseInt($route.current.params.idUsuario);           
 
                return    Execute.execute.query({Accion: 'S',
-                         SQL: "SELECT PER_CODI,PER_NOMB ,PER_APEL,PER_DIRE,PER_USER,PER_TELE, " +
+                         SQL: "SELECT PER_CODI,PER_NOMB ,PER_APEL,PER_DIRE,PER_USER,PER_TELE,PER_ENTI_CODI, " +
                         " PER_TIPO,PER_TIPO_JUEZ  " +
                         " FROM ESC_PERS WHERE PER_CODI=" + usuarioID });
 
