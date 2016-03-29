@@ -89,7 +89,7 @@ angular.module('myApp')
 				{
 
 					
-					if (item.PER_PASS!="")
+					if (item.PER_PASS!=undefined && item.PER_PASS!="")
 					{
 					datos2 ={
     					Accion:"U",

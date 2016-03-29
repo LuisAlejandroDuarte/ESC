@@ -1,6 +1,55 @@
 'use strict';
  angular.module('myApp')
 
+ .directive('myModaleliminarproductoevento', function() {
+       return {
+        restrict : 'AE',    
+        controller: [ "$scope","$window",'$http', function($scope,$window,$http) {
+            $scope.afirmaEliminar = function() {
+                      var Codigo = $('#myModal').data('id').toString(); 
+                     var eliminar ={
+                        Accion:"D",
+                        SQL:"DELETE FROM ESC_PROD_EVEN WHERE PRE_CONS="+ Codigo
+                        }
+            
+                    $http.post("services/executesql.php",eliminar)
+                        .success(function(data) {   
+                         $scope.listProductoEvento.splice($('#index')[0].innerText,1);    
+                        $('#myModal').modal('hide');
+                       
+                    })
+                        .error(function(data) {
+                            $('#myModal').modal('hide');
+                            alert(data['msg']);                        
+            });  
+                };
+               
+            }],
+
+        template : '<div class="modal fade" id="myModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' + 
+                    '<div class="modal-dialog">' +
+        '<div class="modal-content">' +
+            '<div class="modal-header">' +
+                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+                 '<h3 class="modal-title" id="myModalLabel">Advertencia!</h3> ' +
+            '</div>' +
+            '<div class="modal-body"> ' +
+                 '<h4> Desea Borrar ? </h4> ' +
+                  '<div><label id="nombre"></label>' +
+                   '<div ng-show=false><label id="index"></label>' +
+            '</div>' +
+            '<div class="modal-footer">' +
+                '<button ng-click= "afirmaEliminar();" class="btn btn-danger"  id="btnYes" >Si</button>' +
+                '<button type="button" class="btn btn-default" data-dismiss="modal"  >No</button>' +
+            '</div>' +        
+        '</div>' +        
+    '</div>' +    
+'</div>' +
+'</div>',
+  
+    }
+})
+
 .controller('productoEventoCtrl', ['$scope','$window','Execute', function($scope,$window,Execute){
 	   
     $scope.settingsPanel ={
@@ -80,12 +129,18 @@
 
          Execute.SQL(eliminar).then(function(result) { 
 
-            if (result[0]!=null)
+            if (result.data[0]!=null)
             {
                 $window.alert('Exist el registro en la tabla Juez Producto Evento');
             }
             else
-                 $scope.listProductoEvento.splice(object.$index,1);
+            {
+                 $('#index').text(object.$index);
+                 $('#nombre').text(item.PRO_NOMB + ' ' + item.EVE_NOMB + ' ' + item.PER_NOMB);
+                 $('#myModal').data('id', item.PRE_CONS).modal('show');       
+                 //$scope.listProductoEvento.splice(object.$index,1);
+            }
+
 
          });
 
@@ -176,7 +231,13 @@
                             $window.alert(result.data[0].msg);
                         }
                         else
-                         $window.alert("Actualizado");   
+                        {
+                         $window.alert("Actualizado"); 
+                         $window.location.href="#/menu";
+                          $window.location.href="#/producto-evento";
+
+                        }
+
 
                     });  		
     }

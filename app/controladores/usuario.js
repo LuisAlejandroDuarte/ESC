@@ -194,8 +194,8 @@
           var datos ={
             Accion:"S",
            SQL:"SELECT PER_CODI,PER_NOMB ,PER_APEL,PER_DIRE,PER_USER, PER_TELE," +
-           " CASE PER_TIPO WHEN 0 THEN 'Administrador' " +
-           " WHEN 1 THEN 'Juez' WHEN 2 THEN 'Lider' END AS PER_TIPO  FROM ESC_PERS"
+           " concat(CASE PER_TIPO WHEN 0 THEN 'Administrador' " +
+           " WHEN 1 THEN 'Juez' WHEN 2 THEN 'Lider' END, ' ',CASE PER_TIPO_JUEZ WHEN 1 THEN '(Experto)' WHEN 2 THEN '(Entrenamiento)' WHEN 0  THEN ' ' END  ) AS PER_TIPO  FROM ESC_PERS"
         }
 
         Execute.SQL(datos).then(function(result) {             

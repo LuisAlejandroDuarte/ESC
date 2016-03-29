@@ -1,0 +1,56 @@
+<div class="margenTop">
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-xs-12">
+    <div class="panel panel-primary  drop-shadow" style="width:40%;height:250px;  margin-left:27%; margin-top:5%">
+    <div class="panel-heading"><h>{{tiTulo}}</h></div>
+      <div class="panel-body">
+        <form method="post" name="myFormEscalaEvaluacion"  novalidate>
+          
+            <div class="row">
+              <div class="col-md-12 col-lg-12 col-xs-12">
+                 <label>Calificación</label>         
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-lg-12 col-xs-12">
+                  <input id="idCaliNomb" name="name" ng-model="Datos.EEV_CALI" type= "text" class= "form-control" placeholder="Calificación" autofocus required/>
+           
+              </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 col-lg-12 col-xs-12">
+                 <label>Parámetro</label>         
+              </div>
+            </div>
+            <div class="row">
+             <div class="col-md-12 col-lg-12 col-xs-12">
+             <select class="form-control"  ng-model="Datos.EEV_PAEV_CONS" 
+                    ng-options="opt.PEV_CONS as opt.PEV_DESC for opt in listParametro" required>
+            </select>
+            </div>
+
+            </div>
+             </form>  
+            <div class="row" style="margin-top: 30px">              
+               <div class="col-md-offset-7"> 
+                      <button  ng-click= "save(Datos)"  ng-disabled=" myFormEscalaEvaluacion.$invalid"              
+                      class="btn btn-primary">{{buttonText}}</button>
+                      <button  ng-click= "volver()"               
+                    class="btn btn-primary">Cancelar</button>
+              </div>
+
+            </div>
+
+          </div>                
+       
+
+    </div>
+  </div>
+</div>  
+</div>
+
+
+
+
+ 

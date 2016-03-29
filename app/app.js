@@ -4,6 +4,7 @@ angular.module('myApp', ['ngRoute','ngCookies','ngResource','jqwidgets'])
 
 .run(function($rootScope, $location, $cookieStore) {
    $rootScope.$on('$routeChangeStart', function(event, next, current) {
+    
 
       if ($cookieStore.get('conectado')==false || $cookieStore.get('conectado') == null) 
       {
@@ -12,7 +13,13 @@ angular.module('myApp', ['ngRoute','ngCookies','ngResource','jqwidgets'])
       else 
       {
         if(next.templateUrl == 'views/inicio.html'  ) {
-           $location.path('/menu'); 
+           $location.path('/menu');            
+         }
+         if ( (next.templateUrl == 'views/usuario.html' && $cookieStore.get('myUser')[0].PER_TIPO!=0) || 
+               (next.templateUrl == 'views/edit-usuario.html' && $cookieStore.get('myUser')[0].PER_TIPO!=0)){
+             $cookieStore.remove('myUser');                        
+             $cookieStore.remove('conectado');
+             $location.path("/inicio");
          }
       }
 
@@ -160,6 +167,53 @@ $routeProvider.when('/juez-producto-evento', {
         controller: 'juezProductoEventoCtrl'
     }); 
 
+$routeProvider.when('/parametroEvaluacion', {
+        templateUrl: 'views/parametroEvaluacion.html',
+        controller: 'parametroEvaluacionCtrl'
+    }); 
+
+
+ $routeProvider.when('/edit-parametroEvaluacion/:idparametroEvaluacion', {
+        templateUrl: 'views/edit-parametroEvaluacion.html',
+        controller: 'edit-parametroEvaluacionCtrl',
+         resolve: {
+          datosparametroEvaluacion: function($route,Execute){
+            var parametroEvaluacionID = parseInt($route.current.params.idparametroEvaluacion);           
+
+               return    Execute.execute.query({Accion: 'S',
+                         SQL: "SELECT PEV_CONS,PEV_DESC FROM ESC_PARA_EVAL " + 
+                         " WHERE PEV_CONS =" + parametroEvaluacionID });
+
+          }
+        }
+    });  
+
+
+$routeProvider.when('/escalaEvaluacion', {
+        templateUrl: 'views/escalaEvaluacion.html',
+        controller: 'escalaEvaluacionCtrl'
+    });
+
+ $routeProvider.when('/edit-escalaEvaluacion/:idescalaEvaluacion', {
+        templateUrl: 'views/edit-escalaEvaluacion.html',
+        controller: 'edit-EscalaEvaluacionCtrl',
+         resolve: {
+          datosEscalaEvaluacion: function($route,Execute){
+            var escalaEvaluacionID = parseInt($route.current.params.idescalaEvaluacion);           
+
+               return    Execute.execute.query({Accion: 'S',
+                         SQL: "SELECT EEV.EEV_CONS,EEV.EEV_CALI,PEV.PEV_DESC FROM ESC_ESCA_EVAL AS EEV INNER  JOIN ESC_PARA_EVAL AS PEV " +
+                          " ON PEV.PEV_CONS =EEV.EEV_PAEV_CONS WHERE EEV.EEV_CONS=" + escalaEvaluacionID });
+
+          }
+        }
+    });  
+
+
+ $routeProvider.when('/productoEventoAtributo', {
+        templateUrl: 'views/producto-evento-atributo.html',
+        controller: 'productoEventoAtributoCtrl'
+    }); 
 
    $routeProvider.when('/menu', {
         templateUrl: 'views/menu.html',

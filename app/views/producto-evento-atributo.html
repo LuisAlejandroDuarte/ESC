@@ -1,0 +1,103 @@
+<div class="margenTop">
+	
+	<div class="row">
+		
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<h5>PRODUCTO EVENTO</h5>
+		</div>		
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<h5>ATRIBUTO</h5>
+		</div>				
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<h5>ESCALA EVALUACIÓN</h5>
+		</div>	
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<h5>JUEZ</h5>
+		</div>				
+	</div>
+
+	<div class="row">
+
+		<div class="col-md-3 col-lg-3 col-xs-3">		
+			<select class="form-control"  ng-model="selProductoEvento" 
+          ng-options="productoEvento as productoEvento.PRE_NOMB for productoEvento in listProductoEvento" required></select>		
+		</div>				
+		
+	    <div class="col-md-3 col-lg-3 col-xs-3">		
+			<select class="form-control"  ng-model="selAtributo" 
+             ng-options="atributo as atributo.ATR_NOMB for atributo in listAtributo" required></select>		
+		</div>	
+
+	    <div class="col-md-3 col-lg-3 col-xs-3">		
+			<select class="form-control"  ng-model="selEscalaEvaluacion" 
+          ng-options="escalaEvaluacion as escalaEvaluacion.EEV_CALI for escalaEvaluacion in listEscalaEvaluacion" required></select>		
+		</div>	
+
+	    <div class="col-md-3 col-lg-3 col-xs-3">		
+			<select class="form-control"  ng-model="selJuez" 
+            ng-options="juez as juez.PER_NOMB for juez in listJuez" required></select>		
+		</div>	
+
+		
+
+	</div>
+	<div class="row" style="margin-top:20px">
+		<div class="col-md-2 col-lg-2 col-xs-2">
+			<button type="button" class="btn btn-primary" ng-click="onClicAgregar(selProductoEvento,selAtributo,selEscalaEvaluacion,selJuez)">Agregar</button>
+		</div>
+	</div>
+	<my-Modaleliminarproductoeventoatributo></my-Modaleliminarproductoeventoatributo>
+	<div class="row" style="margin-top:20px">
+		<div class="col-md-12 col-lg-12 col-xs-12">           
+		   <jqx-panel jqx-settings="settingsPanel">		     
+		     <ul ng-repeat="productoEventoAtributo in listProductoEventoAtributo" class="list-group">		
+			<li class="list-group-item">
+				<div class="row">
+					<div class="col-md-3 col-lg-3 col-xs-3">
+						<label style="color:blue;font-size: 13px;font-weight: 100">PRODUCTO EVENTO</label>
+					</div>					
+					<div class="col-md-3 col-lg-3 col-xs-3">
+						<label style="color:blue;font-size: 13px;font-weight: 100">ATRIBUTO</label>
+					</div>	
+					<div class="col-md-2 col-lg-2 col-xs-2">
+						<label style="color:blue;font-size: 13px;font-weight: 100">ESCALA EVALUACIÓN</label>
+					</div>					
+					<div class="col-md-3 col-lg-3 col-xs-3">
+						<label style="color:blue;font-size: 13px;font-weight: 100">JUEZ</label>
+					</div>										
+					<div class="col-md-1 col-lg-1 col-xs-1">
+						<label style="color:red;font-size: 13px;font-weight: 300">Eliminar</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 col-lg-3 col-xs-3">
+						<label style="font-size: 12px;font-weight: 100">{{productoEventoAtributo.PRE_NOMB}}</label>
+					</div>
+					<div class="col-md-3 col-lg-3 col-xs-3">
+						<label style="font-size: 12px;font-weight: 100">{{productoEventoAtributo.ATR_NOMB}}</label>
+					</div>		
+					<div class="col-md-2 col-lg-2 col-xs-2">
+						<label style="font-size: 12px;font-weight: 100">{{productoEventoAtributo.EEV_CALI}}</label>
+					</div>
+					<div class="col-md-3 col-lg-3 col-xs-3">
+						<label style="font-size: 12px;font-weight: 100">{{productoEventoAtributo.JUEZ_NOMB}}</label>
+					</div>									
+					<div class="col-md-1 col-lg-1 col-xs-1">
+						<jqx-button jqx-settings="jqxButtonsSettings"  ng-click="onClicEliminar(productoEventoAtributo,this)">  <i class="glyphicon glyphicon-ban-circle" style="cursor:pointer"  ></i> </jqx-button>
+					</div>
+				</div>	
+
+			</li>			     	     
+	     </ul>		   
+	</jqx-panel>
+   </div>
+</div>
+	<div class="row" style="margin-top: 10px">
+		<div class="col-md-offset-10 col-lg-offset-10 col-xs-offset-10">
+				<button type="button" class="btn btn-success" ng-click="onClicGuardar()">Guadar</button>
+					</div>
+    	</div>		
+
+
+	
+

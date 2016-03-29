@@ -158,29 +158,7 @@
             else
                 $('#tableatributo').bootstrapTable('load',[]);
 
-});
-        //  $('#tableatributo').bootstrapTable('removeAll');
-        //         $('#tableatributo').bootstrapTable('append',result.data);        
-
-        // });
-
-
-        
-        // //     var json =[{'CAR_CODI':1,'CAR_NOMB':'Nombre1'}];
-        //   var datos ={
-        //    Accion:"S",
-        //    SQL:"SELECT CAR_CODI,CAR_NOMB FROM CACAO.ESC_CARA "
-        //     }
-        // Execute.SQL(datos).then(function(result) {                         
- 
-        //  $('#tableatributo').bootstrapTable('removeAll');
-        //         $('#tableatributo').bootstrapTable('append',result.data);
-
-        //   var datos = $scope.options;      
-
-        // });
-
-
+});       
 
  
          
