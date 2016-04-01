@@ -52,6 +52,7 @@
 
 .controller('productoEventoAtributoCtrl', ['$scope','$window','Execute', function($scope,$window,Execute){
 	   
+        $("#jqxLoader").jqxLoader({ width: 250, height: 150 });
     $scope.settingsPanel ={
          width: 1100,
          height: 300,
@@ -87,21 +88,11 @@
                     $scope.listJuez =[];
                     Execute.SQL(juez).then(function(result) { 
                         if (result.data[0]!=null)
-                            $scope.listJuez =result.data;   
-
-                       var atributo ={
-                            Accion  :"S",
-                            SQL:"SELECT ATR_CODI,ATR_NOMB FROM ESC_ATRIB"
-                       } 
-
-                       $scope.listAtributo=[];
-                       Execute.SQL(atributo).then(function(result) { 
-                            if (result.data[0]!=null)
-                                $scope.listAtributo =  result.data;
+                            $scope.listJuez =result.data;                         
 
                             var escalaEvaluacion ={
                                 Accion:"S",
-                                SQL:"SELECT EEV_CONS,EEV_CALI FROM ESC_ESCA_EVAL"
+                                SQL:"SELECT EEV_CONS,concat(EV.EEV_CALI,' ',PE.PEV_DESC) AS EEV_CALI FROM ESC_ESCA_EVAL AS EV INNER JOIN ESC_PARA_EVAL AS PE ON EV.EEV_PAEV_CONS = PE.PEV_CONS"
                             }
 
                             $scope.listEscalaEvaluacion=[];
@@ -111,14 +102,17 @@
 
                                   var detalle = {
                                         Accion:"S",
-                                        SQL :"SELECT PEA.PEA_CONS, " + 
-                                        " concat(PER2.PER_NOMB, ' ',PER2.PER_APEL) AS JUEZ_NOMB, PER2.PER_CODI AS JUEZ_CODI, concat(E.EVE_NOMB,'-',P.PRO_NOMB, '-' ,concat(PER.PER_NOMB, ' ',PER.PER_APEL)) AS PRE_NOMB, PE.PRE_CONS, " +
-                                        " A.ATR_CODI,A.ATR_NOMB,EEV.EEV_CONS,EEV.EEV_CALI " +
-                                        " FROM ESC_PROD_EVEN As PE INNER JOIN  ESC_PROD AS P " +
-                                        " ON  P.PRO_CODI = PE.PRE_PROD_CODI INNER JOIN ESC_EVEN AS E ON PE.PRE_EVEN_CODI = E.EVE_CODI " +
-                                        " INNER JOIN ESC_PERS AS PER ON PER.PER_CODI=PE.PRE_LIDE_CODI INNER JOIN ESC_PROD_EVEN_ATRIB AS PEA ON " +
-                                        " PEA.PEA_PREV_CONS=PE.PRE_CONS INNER JOIN ESC_PERS AS PER2 ON PER2.PER_CODI = PEA.PEA_JUEZ_CODI INNER JOIN ESC_ATRIB AS A ON " +
-                                        " A.ATR_CODI = PEA.PEA_ATRI_CODI INNER JOIN ESC_ESCA_EVAL AS EEV ON EEV.EEV_CONS = PEA.PEA_ESEV_CONS  WHERE PER.PER_TIPO=2"
+                                        SQL :"SELECT PEA.PEA_CONS, concat(PER2.PER_NOMB, ' ',PER2.PER_APEL) AS JUEZ_NOMB, " +
+                                        " PER2.PER_CODI AS JUEZ_CODI, concat(E.EVE_NOMB,'-',P.PRO_NOMB, '-' ,concat(PER.PER_NOMB, ' ',PER.PER_APEL)) AS PRE_NOMB, " +
+                                        " PE.PRE_CONS,A.ATR_CODI,A.ATR_NOMB,EEV.EEV_CONS,EEV.EEV_CALI " +
+                                        " FROM ESC_PROD_EVEN                As PE " +
+                                        " INNER JOIN ESC_PROD               AS P    ON P.PRO_CODI        = PE.PRE_PROD_CODI " +
+                                        " INNER JOIN ESC_EVEN               AS E    ON PE.PRE_EVEN_CODI  = E.EVE_CODI " +
+                                        " INNER JOIN ESC_PERS               AS PER  ON PER.PER_CODI      = PE.PRE_LIDE_CODI " +
+                                        " INNER JOIN ESC_PROD_EVEN_ATRIB    AS PEA  ON PEA.PEA_PREV_CONS = PE.PRE_CONS " +
+                                        " INNER JOIN ESC_PERS               AS PER2 ON PER2.PER_CODI     = PEA.PEA_JUEZ_CODI " +
+                                        " INNER JOIN ESC_ATRIB              AS A    ON A.ATR_CODI        = PEA.PEA_ATRI_CODI " +
+                                        " INNER JOIN ESC_ESCA_EVAL          AS EEV  ON EEV.EEV_CONS      = PEA.PEA_ESEV_CONS  WHERE PER.PER_TIPO=2"
                                         }
 
                                         $scope.listProductoEventoAtributo = [];
@@ -129,7 +123,7 @@
                                         });
                             });
 
-                       });
+                       
 
 
                   
@@ -219,7 +213,7 @@
     $scope.onClicGuardar = function()
     {    	
 
-    	
+    	 $('#jqxLoader').jqxLoader('open');
          var insertSQL =[]
         angular.forEach($scope.listProductoEventoAtributo, function(value, key){
 
@@ -235,18 +229,35 @@
             }
         });
              Execute.SQLMulti(insertSQL).then(function(result) { 
-
+                        $('#jqxLoader').jqxLoader('close');    
                         if (result.data[0]=="fallo")
                         {
                             $window.alert(result.data[0].msg);
                         }
                         else
                         {
+
                          $window.alert("Actualizado");   
                          $window.location.href="#/menu";
+
                           $window.location.href="#/productoEventoAtributo";
                         }
 
                     });  		
+    }
+
+    $scope.onChangeEvento = function()
+    {
+         var atributo ={
+             Accion  :"S",
+             SQL:"SELECT distinct A.ATR_CODI,A.ATR_NOMB FROM ESC_ATRIB AS A INNER JOIN  ESC_CARA_PROD AS CP ON A.ATR_CARA_CODI = CP.CPR_CARA_CODI " +
+                 " INNER JOIN ESC_PROD AS P ON P.PRO_CODI = CP.CPR_PROD_CODI INNER " +
+                 " JOIN ESC_PROD_EVEN  AS PE ON PE.PRE_PROD_CODI = CP.CPR_PROD_CODI AND PE.PRE_PROD_CODI = P.PRO_CODI WHERE PE.PRE_CONS=" + $scope.selProductoEvento.PRE_CONS
+            } 
+        $scope.listAtributo=[];
+        Execute.SQL(atributo).then(function(result) { 
+             if (result.data[0]!=null)
+                $scope.listAtributo =  result.data;
+        });
     }
 }])

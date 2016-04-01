@@ -52,8 +52,11 @@
 
 .controller('productoEventoCtrl', ['$scope','$window','Execute', function($scope,$window,Execute){
 	   
+
+     //Devuelve el formato de una fecha
+    
     $scope.settingsPanel ={
-         width: 1100,
+         width: 1200,
          height: 300,
          autoUpdate:true
     }
@@ -67,16 +70,7 @@
     $scope.jqxButtonsSettings ={
 
     }
-
-		var datos ={
-    		Accion:"S",
-    		SQL:"SELECT PRO_CODI,PRO_NOMB FROM ESC_PROD"
-    	}
-		
-		$scope.listProducto =[];   
-    	 Execute.SQL(datos).then(function(result) { 
-           if (result.data[0]!=null)           		
-    	 	   $scope.listProducto = result.data;    	 	     	    	
+			 	     	    	
     	    var evento ={
     		Accion:"S",
     		SQL:"SELECT EVE_CODI,EVE_NOMB FROM ESC_EVEN"
@@ -86,32 +80,69 @@
 
     	 	if (result.data[0]!=null)           		
          		$scope.listEvento = result.data;
-                    var lider ={
+
+                    var producto ={
                         Accion:"S",
-                        SQL:"SELECT PER_CODI,concat(PER_NOMB,' ',PER_APEL) AS PER_NOMB FROM ESC_PERS WHERE PER_TIPO=2"
-                        }
+                        SQL:"SELECT * from ESC_PROD"
+                    }
+
+                $scope.listProducto=[];
+                Execute.SQL(producto).then(function(result) { 
+                        if (result.data[0]!=null)
+                            $scope.listProducto = result.data;    
+                        var lider ={
+                            Accion:"S",
+                            SQL:"SELECT PER_CODI,concat(PER_NOMB,' ',PER_APEL) AS PER_NOMB FROM ESC_PERS WHERE PER_TIPO=2"
+                            }
                     $scope.listLider =[];
                     Execute.SQL(lider).then(function(result) { 
                         if (result.data[0]!=null)
                             $scope.listLider =result.data;    
                     var detalle = {
                         Accion:"S",
-                        SQL :"SELECT P.PRO_NOMB,P.PRO_CODI,concat(PER.PER_NOMB, ' ',PER.PER_APEL) AS PER_NOMB," +
-                        " PER.PER_CODI,E.EVE_CODI,E.EVE_NOMB,PE.PRE_FECH,PE.PRE_CONS    FROM ESC_PROD_EVEN As PE INNER JOIN  ESC_PROD AS P " +
-                        " ON  P.PRO_CODI = PE.PRE_PROD_CODI INNER JOIN ESC_EVEN AS E ON PE.PRE_EVEN_CODI = E.EVE_CODI " +
-                        " INNER JOIN ESC_PERS AS PER ON PER.PER_CODI=PE.PRE_LIDE_CODI WHERE PER.PER_TIPO=2"
+                        SQL :"SELECT C.CAR_CODI,C.CAR_NOMB, P.PRO_NOMB,P.PRO_CODI,concat(PER.PER_NOMB, ' ',PER.PER_APEL) AS PER_NOMB," +
+                        " PER.PER_CODI,E.EVE_CODI,E.EVE_NOMB,PE.PRE_FECH,PE.PRE_CONS " +
+                        " FROM ESC_PROD_EVEN        AS PE " + 
+                        " INNER JOIN ESC_PROD       AS P    ON P.PRO_CODI       = PE.PRE_PROD_CODI " +
+                        " INNER JOIN ESC_EVEN       AS E    ON PE.PRE_EVEN_CODI = E.EVE_CODI " +
+                        " INNER JOIN ESC_PERS       AS PER  ON PER.PER_CODI     = PE.PRE_LIDE_CODI " +
+                        " INNER JOIN ESC_CARA_PROD  AS CP   ON CP.CPR_PROD_CODI = P.PRO_CODI " +
+                        " INNER JOIN ESC_CARA       AS C    ON C.CAR_CODI       = CP.CPR_CARA_CODI " + 
+                        " WHERE PER.PER_TIPO=2"
                     }
 
                 Execute.SQL(detalle).then(function(result) { 
-                	if (result.data[0]!=null)
-                    	$scope.listProductoEvento = result.data;
+                    if (result.data[0]!=null)
+                        $scope.listProductoEvento = result.data;
 
                 });
                 });
+
+
+
+                 });       
+
+
+
+
 
     	       });
 
-    	 });
+    //Año-Mes-Dia
+    function devolverFormatoFecha(fecha)
+    {
+        var Mes ="ene,feb,mar,abr,may,jun,jul,ago,sep,oct,nov,dic";        
+        var arrayMes = new Array();        
+        arrayMes = Mes.split(",");
+
+        var _fecha = fecha.split("-");
+        var dia = _fecha[0];
+        var mes = arrayMes.indexOf(_fecha[1])+1;
+        var year = _fecha[2];
+
+        return year + "-" + mes + "-" + dia;
+
+    }  	
 
     $scope.onClicEliminar  = function(item,object)
     {
@@ -147,8 +178,13 @@
         
     }        
 
-    $scope.onClicAgregar = function(selProducto,selEvento,selLider,selFecha)    
+    $scope.onClicAgregar = function(selCaracteristica,selProducto,selEvento,selLider,selFecha)    
     {
+        if (selCaracteristica==undefined || selCaracteristica=="")
+        {
+            $window.alert("Seleccione una característica");
+            return;
+        }
         if (selProducto==undefined || selProducto=="")
         {
             $window.alert("Seleccione un producto");
@@ -178,6 +214,8 @@
 
         var ingresar ={
                 PRE_CONS:-1,
+                CAR_CODI:selCaracteristica.CAR_CODI,
+                CAR_NOMB:selCaracteristica.CAR_NOMB,
         		PRO_CODI:selProducto.PRO_CODI,
         		PRO_NOMB:selProducto.PRO_NOMB,
         		PER_CODI:selLider.PER_CODI,
@@ -189,7 +227,7 @@
         var existe =false;
          angular.forEach($scope.listProductoEvento, function(value, key){
 
-   		   if (value.PRO_CODI==ingresar.PRO_CODI && value.PER_CODI==ingresar.PER_CODI && value.EVE_CODI == ingresar.EVE_CODI)
+   		   if (value.PRO_CODI==ingresar.PRO_CODI && value.PER_CODI==ingresar.PER_CODI && value.EVE_CODI == ingresar.EVE_CODI && value.CAR_CODI == ingresar.CAR_CODI)
    		   {
    		   		existe=true;
    		   }
@@ -211,15 +249,11 @@
 
             if (value.PRE_CONS==-1)
             {
-                var fechaInicio = new Date(value.PRE_FECH);
-                var anno =  fechaInicio.getFullYear();
-                var mes =  fechaInicio.getMonth()+1;
-                var dia =  fechaInicio.getDate();
-                fechaInicio = anno + "-" + mes + "-" + dia; 
-                datos ={
+                var fechaInicio = devolverFormatoFecha(value.PRE_FECH);                                          
+                var datos ={
                     Accion :"I",
-                    SQL:"INSERT INTO ESC_PROD_EVEN (PRE_PROD_CODI,PRE_EVEN_CODI,PRE_LIDE_CODI,PRE_FECH) " +
-                      " VALUES (" + value.PRO_CODI + "," + value.EVE_CODI + "," + value.PER_CODI + ",'" + fechaInicio + "')"
+                    SQL:"INSERT INTO ESC_PROD_EVEN (PRE_PROD_CODI,PRE_CARA_CODI,PRE_EVEN_CODI,PRE_LIDE_CODI,PRE_FECH) " +
+                      " VALUES (" + value.PRO_CODI + "," + value.CAR_CODI + "," + value.EVE_CODI + "," + value.PER_CODI + ",'" + fechaInicio + "')"
                    }
                  insertSQL.splice(0,0,datos);
             }
@@ -240,5 +274,23 @@
 
 
                     });  		
+    }
+
+    $scope.onChangeProducto = function()
+    {
+        var caracteristica ={
+            Accion:"S",
+            SQL:"SELECT C.CAR_CODI,C.CAR_NOMB from ESC_CARA AS C " +
+            " INNER JOIN ESC_CARA_PROD AS CP ON CP.CPR_CARA_CODI = C.CAR_CODI WHERE CP.CPR_PROD_CODI=" + $scope.selProducto.PRO_CODI
+        }
+
+        $scope.listCaracteristica = [];
+
+        Execute.SQL(caracteristica).then(function(result) { 
+            if (result.data[0]!=null)
+            {
+                $scope.listCaracteristica = result.data;                               
+            }
+        });
     }
 }])

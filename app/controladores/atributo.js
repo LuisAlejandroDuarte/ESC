@@ -82,7 +82,7 @@
 
  .controller('atributoCtrl', ['$scope','$window','Execute', function($scope,$window,Execute) {
             
-     
+      $("#jqxLoader").jqxLoader({ width: 250, height: 150 });
 
         $scope.options = {                                    
                 cache: false,   
@@ -151,13 +151,13 @@
            SQL:"SELECT ATR_CODI,ATR_NOMB As Atributo,C.CAR_NOMB As Caracterizacion FROM ESC_ATRIB AS A INNER  JOIN ESC_CARA AS C " +
                " ON C.CAR_CODI =A.ATR_CARA_CODI"
         }
-
+         $('#jqxLoader').jqxLoader('open');
         Execute.SQL(datos).then(function(result) {             
             if (result.data[0]!=null)
                 $('#tableatributo').bootstrapTable('load',result.data);
             else
                 $('#tableatributo').bootstrapTable('load',[]);
-
+        $('#jqxLoader').jqxLoader('close');    
 });       
 
  

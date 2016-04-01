@@ -1,0 +1,33 @@
+<div class="margenTop">
+	
+	<div class="row">
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<label>JUEZ</label>
+		</div>
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<label>EVENTO 1</label>
+		</div>
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<label>EVENTO 2</label>
+		</div>		
+	</div>
+	
+	<div class="row">
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<select ng-model="selJuez" ng-options="juez as juez.PER_NOMB for juez in listJuez" class="form-control" ng-change="onChangeJuez()">
+				
+			</select>		
+		</div>
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<select ng-model="selEvento" ng-options="evento as evento.EVE_NOMB for evento in listEvento" class="form-control" ng-change="onChangeEvento()">
+				
+			</select>		
+		</div>
+		<div class="col-md-3 col-lg-3 col-xs-3">
+			<select ng-model="selEvento2" ng-options="evento2 as evento2.EVE_NOMB for evento2 in listEvento2" class="form-control">
+				
+			</select>		
+		</div>		
+
+	</div>
+</div>

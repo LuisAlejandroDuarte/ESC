@@ -1,37 +1,45 @@
-<div class="margenTop">
+
 	
-	<div class="row">
-		
+	<div class="row" style="margin-left:0px">				
 		<div class="col-md-3 col-lg-3 col-xs-3">
 			<h5>PRODUCTOS</h5>
 		</div>		
+		<div class="col-md-2 col-lg-2 col-xs-2">
+			<h5>CARACTERÍSTICAS</h5>
+		</div>	
 		<div class="col-md-3 col-lg-3 col-xs-3">
 			<h5>EVENTOS</h5>
 		</div>		
-		<div class="col-md-3 col-lg-3 col-xs-3">
+		<div class="col-md-2 col-lg-2 col-xs-2">
 			<h5>LÍDERES</h5>
 		</div>		
-		<div class="col-md-3 col-lg-3 col-xs-3">
+		<div class="col-md-2 col-lg-2 col-xs-2">
 			<h5>FECHA</h5>
 		</div>		
 	</div>
 
 	<div class="row">
 		<div class="col-md-3 col-lg-3 col-xs-3">
-			<select class="form-control"  ng-model="selProducto" 
+			<select class="form-control"  ng-model="selProducto" ng-change="onChangeProducto()"
           ng-options="producto as producto.PRO_NOMB for producto in listProducto" required>
           </select>
 		</div>
-		
+		<div class="col-md-2 col-lg-2 col-xs-2">
+			<select class="form-control"  ng-model="selCaracteristica" 
+          ng-options="caracteristica as caracteristica.CAR_NOMB for caracteristica in listCaracteristica" required>
+          </select>
+		</div>
+
+			
 		<div class="col-md-3 col-lg-3 col-xs-3">		
 			<select class="form-control"  ng-model="selEvento" 
           ng-options="evento as evento.EVE_NOMB for evento in listEvento" required></select>		
 		</div>		
-		<div class="col-md-3 col-lg-3 col-xs-3">		
+		<div class="col-md-2 col-lg-2 col-xs-2">		
 			<select class="form-control"  ng-model="selLider" 
           ng-options="lider as lider.PER_NOMB for lider in listLider" required></select>		
 		</div>	
-		<div class="col-md-2 col-lg-2 col-xs-3">
+		<div class="col-md-2 col-lg-2 col-xs-2">
 		<jqx-date-time-input  ng-model="selFecha" jqx-settings="settingsDate">
                  </jqx-date-time-input>
 		</div>	
@@ -39,7 +47,7 @@
 	</div>
 	<div class="row" style="margin-top:20px">
 		<div class="col-md-2 col-lg-2 col-xs-2">
-			<button type="button" class="btn btn-primary" ng-click="onClicAgregar(selProducto,selEvento,selLider,selFecha)">Agregar</button>
+			<button type="button" class="btn btn-primary" ng-click="onClicAgregar(selCaracteristica,selProducto,selEvento,selLider,selFecha)">Agregar</button>
 		</div>
 	</div>
 	<my-modaleliminarproductoevento></my-modaleliminarproductoevento>
@@ -49,13 +57,16 @@
 		     <ul ng-repeat="productoEvento in listProductoEvento" class="list-group">		
 			<li class="list-group-item">
 				<div class="row">
-					<div class="col-md-3 col-lg-3 col-xs-3">
+					<div class="col-md-2 col-lg-2 col-xs-2">
+						<label style="color:blue;font-size: 13px;font-weight: 100">CARACTERÍSTICA</label>
+					</div>
+					<div class="col-md-2 col-lg-2 col-xs-2">
 						<label style="color:blue;font-size: 13px;font-weight: 100">PRODUCTO</label>
 					</div>
 					<div class="col-md-3 col-lg-3 col-xs-3">
 						<label style="color:blue;font-size: 13px;font-weight: 100">EVENTO</label>
 					</div>
-					<div class="col-md-3 col-lg-3 col-xs-3">
+					<div class="col-md-2 col-lg-2 col-xs-2">
 						<label style="color:blue;font-size: 13px;font-weight: 100">LIDER</label>
 					</div>
 					<div class="col-md-2 col-lg-2 col-xs-2">
@@ -66,13 +77,16 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-3 col-lg-3 col-xs-3">
+					<div class="col-md-2 col-lg-2 col-xs-2">
+						<label style="font-size: 13px;font-weight: 100">{{productoEvento.CAR_NOMB}}</label>
+					</div>
+					<div class="col-md-2 col-lg-2 col-xs-2">
 						<label style="font-size: 12px;font-weight: 100">{{productoEvento.PRO_NOMB}}</label>
 					</div>
 					<div class="col-md-3 col-lg-3 col-xs-3">
 						<label style="font-size: 12px;font-weight: 100">{{productoEvento.EVE_NOMB}}</label>
 					</div>
-					<div class="col-md-3 col-lg-3 col-xs-3">
+					<div class="col-md-2 col-lg-2 col-xs-2">
 						<label style="font-size: 12px;font-weight: 100">{{productoEvento.PER_NOMB}}</label>
 					</div>
 					<div class="col-md-2 col-lg-2 col-xs-2">
@@ -86,13 +100,15 @@
 			</li>			     	     
 	     </ul>		   
 	</jqx-panel>
+	</div>
+	</div>
 	<div class="row" style="margin-top: 10px">
-		<div class="col-md-offset-10 col-lg-offset-10 col-xs-offset-10">
+		<div class="col-md-offset-11 col-lg-offset-11 col-xs-offset-11">
 				<button type="button" class="btn btn-success" ng-click="onClicGuardar()">Guadar</button>
 					</div>
     	</div>		
 
-</div>
-	</div>
+
+
 	
 

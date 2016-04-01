@@ -3,6 +3,7 @@
 angular.module('myApp')
 
 .controller('edit-AtributoCtrl', ['$scope','$location','datosAtributo','Execute','$route','$window', function($scope,$location,datosAtributo,Execute,$route,$window){
+	 $("#jqxLoader").jqxLoader({ width: 250, height: 150 });
  var NombreActual;
 	var datos ={
 		Accion:"S",
@@ -45,6 +46,7 @@ angular.module('myApp')
 
 	$scope.save = function(item)
 	{
+		  $('#jqxLoader').jqxLoader('open');
 		 var insertar =
               {
                 Accion:"S",
@@ -53,7 +55,9 @@ angular.module('myApp')
             Execute.SQL(insertar).then(function(result) { 
             if (result.data[0]!=null && NombreActual!=result.data[0].ATR_NOMB)
                {
+               	$('#jqxLoader').jqxLoader('close');  
                	 $window.alert('Ya existe el nombre');
+
                }
                else 
                {
@@ -69,7 +73,9 @@ angular.module('myApp')
 					 			$scope.Datos.ATR_CARA_CODI ="";
 					 			$('#idAtrNomb').focus();
 					 			$window.alert("Ingresado");	
-					 			$location.path('/atributo');			
+					 			$('#jqxLoader').jqxLoader('close');  
+					 			$location.path('/atributo');
+
 								});
 							}		
 
@@ -81,7 +87,8 @@ angular.module('myApp')
 								}
 
 			 					Execute.SQL(datos2).then(function(result) { 			 				
-			 					$window.alert("Actualizado");	
+			 					$window.alert("Actualizado");
+			 					$('#jqxLoader').jqxLoader('close');  	
 			 					$location.path('/atributo');
 			 					});
 

@@ -197,13 +197,13 @@
            " concat(CASE PER_TIPO WHEN 0 THEN 'Administrador' " +
            " WHEN 1 THEN 'Juez' WHEN 2 THEN 'Lider' END, ' ',CASE PER_TIPO_JUEZ WHEN 1 THEN '(Experto)' WHEN 2 THEN '(Entrenamiento)' WHEN 0  THEN ' ' ELSE '' END  ) AS PER_TIPO  FROM ESC_PERS"
         }
-
+        $("body").css("cursor", "progress");
         Execute.SQL(datos).then(function(result) {             
             if (result.data[0]!=null)
                 $('#tableusuario').bootstrapTable('load',result.data);
             else
                 $('#tableusuario').bootstrapTable('load',[]);
-
+        $("body").css("cursor", "default");
 });
       
          

@@ -215,6 +215,11 @@ $routeProvider.when('/escalaEvaluacion', {
         controller: 'productoEventoAtributoCtrl'
     }); 
 
+   $routeProvider.when('/resultadoEvaluacionJuez', {
+        templateUrl: 'views/resultado-evaluacion-juez.html',
+        controller: 'resultadoEvaluacionJuezCtrl'
+    }); 
+
    $routeProvider.when('/menu', {
         templateUrl: 'views/menu.html',
         controller: 'MenuCtrl'
