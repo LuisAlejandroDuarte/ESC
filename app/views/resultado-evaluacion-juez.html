@@ -44,4 +44,23 @@
 			<jqx-data-table jqx-settings="dataTableResultado"></jqx-data-table>
 		</div>
 	</div>
+
+	<div class="row" style="margin-top: 20px">
+		<div class="col-md-4 col-lg-4 col-xs-4">
+			<label>t = {{testudent}}</label>
+		</div>
+	</div>
+	<div class="row" style="margin-top: 20px">
+		<div class="col-md-12 col-lg-12 col-xs-12">
+			  <div id="jqxChart" style="width: 850px; height: 500px" ng-jqwidgets="jqxChart" ng-jqxsettings="{ title: title, description: description, enableAxisTextAnimation: enableAxisTextAnimation,
+        showLegend: showLegend, titlePadding: titlePadding, source: datos,xAxis:xAxis,valueAxis:valueAxis, categoryAxis: categoryAxis, colorScheme: colorScheme, seriesGroups: seriesGroups }">
+    </div>
+
+
+		</div>
+	</div>
 </div>
+
+<!-- 
+{ title: title, description: description, enableAxisTextAnimation: enableAxisTextAnimation,
+        showLegend: showLegend, titlePadding: titlePadding, source: data, categoryAxis: categoryAxis, colorScheme: colorScheme, seriesGroups: seriesGroups } -->

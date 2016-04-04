@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp', ['ngRoute','ngCookies','ngResource','jqwidgets'])
+angular.module('myApp', ['ngRoute','ngCookies','ngResource','jqwidgets','ngJqxsettings'])
 
 .run(function($rootScope, $location, $cookieStore) {
    $rootScope.$on('$routeChangeStart', function(event, next, current) {
