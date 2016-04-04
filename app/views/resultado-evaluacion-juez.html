@@ -24,10 +24,24 @@
 			</select>		
 		</div>
 		<div class="col-md-3 col-lg-3 col-xs-3">
-			<select ng-model="selEvento2" ng-options="evento2 as evento2.EVE_NOMB for evento2 in listEvento2" class="form-control">
+			<select ng-model="selEvento2" ng-options="evento2 as evento2.EVE_NOMB for evento2 in listEvento2" class="form-control" ng-change="onChangeEvento2()">
 				
 			</select>		
 		</div>		
 
+	</div>
+	<div class="row" style="margin-top: 20px">
+		<div class="col-md-4 col-lg-4 col-xs-4">
+			<label>EVENTO 1</label><br/>
+			<jqx-data-table jqx-settings="dataTableEvento1"></jqx-data-table>
+		</div>
+		<div class="col-md-4 col-lg-4 col-xs-4">
+			<label>EVENTO 2</label><br/>
+			<jqx-data-table jqx-settings="dataTableEvento2"></jqx-data-table>
+		</div>
+		<div class="col-md-4 col-lg-4 col-xs-4">
+			<label>RESULTADOS</label><br/>
+			<jqx-data-table jqx-settings="dataTableResultado"></jqx-data-table>
+		</div>
 	</div>
 </div>
