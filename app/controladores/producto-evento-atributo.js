@@ -80,16 +80,7 @@
     	 Execute.SQL(productoEvento).then(function(result) {             
 
     	 	if (result.data[0]!=null)           		
-         		$scope.listProductoEvento = result.data;
-                    var juez ={
-                        Accion:"S",
-                        SQL:"SELECT PER_CODI,concat(PER_NOMB,' ',PER_APEL) AS PER_NOMB FROM ESC_PERS WHERE PER_TIPO=1"
-                        }
-                    $scope.listJuez =[];
-                    Execute.SQL(juez).then(function(result) { 
-                        if (result.data[0]!=null)
-                            $scope.listJuez =result.data;                         
-
+         		$scope.listProductoEvento = result.data;                    
                             var escalaEvaluacion ={
                                 Accion:"S",
                                 SQL:"SELECT EEV_CONS,concat(EV.EEV_CALI,' ',PE.PEV_DESC) AS EEV_CALI FROM ESC_ESCA_EVAL AS EV INNER JOIN ESC_PARA_EVAL AS PE ON EV.EEV_PAEV_CONS = PE.PEV_CONS"
@@ -123,11 +114,6 @@
                                         });
                             });
 
-                       
-
-
-                  
-                });
 
     	       });
 
@@ -197,7 +183,7 @@
          angular.forEach($scope.listJuezEvento, function(value, key){
 
    		   if (value.PRE_CONS==ingresar.PRE_CONS && value.ATR_CODI==ingresar.ATR_CODI && 
-                value.EEV_CONS==ingresar.EEV_CONS && value.PEA_JUEZ_CODI==ingresar.PEA_JUEZ_CODI )
+                value.PEA_JUEZ_CODI==ingresar.PEA_JUEZ_CODI )
    		   {
    		   		existe=true;
    		   }
@@ -258,6 +244,17 @@
         Execute.SQL(atributo).then(function(result) { 
              if (result.data[0]!=null)
                 $scope.listAtributo =  result.data;
+                        var juez ={
+                        Accion:"S",
+                        SQL:"SELECT P.PER_CODI,concat(P.PER_NOMB,' ',P.PER_APEL) AS PER_NOMB FROM ESC_PERS AS P " +
+                        " INNER JOIN ESC_JUEZ_PROD_EVEN AS JPE ON JPE.JPE_JUEZ_CODI=P.PER_CODI WHERE JPE.JPE_PREV_CONS=" + $scope.selProductoEvento.PRE_CONS
+                        }
+                    $scope.listJuez =[];
+                    Execute.SQL(juez).then(function(result) { 
+                        if (result.data[0]!=null)
+                            $scope.listJuez =result.data;       
+                    });
+
         });
     }
 }])

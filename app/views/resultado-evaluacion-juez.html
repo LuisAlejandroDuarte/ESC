@@ -24,7 +24,7 @@
 			</select>		
 		</div>
 		<div class="col-md-3 col-lg-3 col-xs-3">
-			<select ng-model="selEvento2" ng-options="evento2 as evento2.EVE_NOMB for evento2 in listEvento2" class="form-control" ng-change="onChangeEvento2()">
+			<select ng-model="selEvento2" ng-options="evento2 as evento2.EVE_NOMB for evento2 in listEvento2" class="form-control" ng-change="onChangeEvento2(selEvento2)">
 				
 			</select>		
 		</div>		
@@ -43,20 +43,31 @@
 			<label>RESULTADOS</label><br/>
 			<jqx-data-table jqx-settings="dataTableResultado"></jqx-data-table>
 		</div>
-	</div>
+	</div>	
+	<div class="row" style="margin-top: 10px">
+		<div class="col-md-10 col-lg-10 col-xs-10">
+			<jqx-panel jqx-settings="settingsPanel">	
+			<jqx-chart jqx-settings="chartSettings"  style="width: 100%; height: 350px;"></jqx-chart>
+			</jqx-panel>
+		</div>	
 
-	<div class="row" style="margin-top: 20px">
-		<div class="col-md-4 col-lg-4 col-xs-4">
-			<label>t = {{testudent}}</label>
-		</div>
-	</div>
-	<div class="row" style="margin-top: 20px">
-		<div class="col-md-12 col-lg-12 col-xs-12">
-			  <div id="jqxChart" style="width: 850px; height: 500px" ng-jqwidgets="jqxChart" ng-jqxsettings="{ title: title, description: description, enableAxisTextAnimation: enableAxisTextAnimation,
-        showLegend: showLegend, titlePadding: titlePadding, source: datos,xAxis:xAxis,valueAxis:valueAxis, categoryAxis: categoryAxis, colorScheme: colorScheme, seriesGroups: seriesGroups }">
-    </div>
-
-
+		<div class="col-md-2 col-lg-2 col-xs-2">
+			  <label>t = {{testudent}}</label>
+			  <div class="row">
+			  	<div class="col-md-12 col-lg-12 col-xs-12">
+			  		<label>Valor Tabla</label>
+			  	</div>
+			  </div>
+			  <div class="row">	
+			  	<div class="col-md-12 col-lg-12 col-xs-12">
+			  		<input ng-model="value" class="form-control" ng-change="onChangeValue()" />
+			  	</div>
+			  </div>
+			   <div class="row">	
+			   	<div class="col-md-12 col-lg-12 col-xs-12">
+			   		{{txtResultado}}
+			   	</div>
+			   </div>
 		</div>
 	</div>
 </div>
