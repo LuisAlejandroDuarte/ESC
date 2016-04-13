@@ -220,6 +220,11 @@ $routeProvider.when('/escalaEvaluacion', {
         controller: 'resultadoEvaluacionJuezCtrl'
     }); 
 
+    $routeProvider.when('/resultadoGrupo', {
+        templateUrl: 'views/resultado-grupo.html',
+        controller: 'resultadoGrupoCtrl'
+    }); 
+
    $routeProvider.when('/menu', {
         templateUrl: 'views/menu.html',
         controller: 'MenuCtrl'

@@ -1,0 +1,51 @@
+<div class="row" style="margin-left:0px">				
+	<div class="col-md-3 col-lg-3 col-xs-3">
+		<h5>PRODUCTOS</h5>
+	</div>				
+	<div class="col-md-3 col-lg-3 col-xs-3">
+		<h5>EVENTO 1</h5>
+	</div>				
+	<div class="col-md-3 col-lg-3 col-xs-3">
+		<h5>EVENTO 2</h5>
+	</div>				
+</div>
+
+
+<div class="row" style="margin-left:0px">				
+	<div class="col-md-3 col-lg-3 col-xs-3">
+		<select class="form-control"  ng-model="selProducto" ng-change="onChangeProducto()"
+          ng-options="producto as producto.PRO_NOMB for producto in listProducto" required>
+          </select>
+	</div>				
+	<div class="col-md-3 col-lg-3 col-xs-3">
+		<select class="form-control"  ng-model="selEvento" ng-change="onChangeEvento()"
+          ng-options="evento as evento.EVE_NOMB for evento in listEvento" required></select>		
+	</div>				
+	<div class="col-md-3 col-lg-3 col-xs-3">
+		<select class="form-control"  ng-model="selEvento2" 
+          ng-options="evento2 as evento2.EVE_NOMB for evento2 in listEvento2" ng-change="onChangeEvento2()" required></select>		
+	</div>				
+</div>
+
+<div class="row" style="margin-top:20px">
+	<div class="col-md-6 col-lg-6 col-xs-6">
+		<label>EVENTO1</label>
+		<jqx-data-table jqx-settings="dataTableEvento1"></jqx-data-table>
+	</div
+	<div class="col-md-6 col-lg-6 col-xs-6">
+		<label>EVENTO2</label>
+		<jqx-data-table jqx-settings="dataTableEvento2"></jqx-data-table>
+	</div
+</div>	
+<div class="row" style="margin-top:20px">
+	<div class="col-lg-3 col-md-3 col-xs-3">
+		<button class="btn btn-default"  ng-click="onClicCalcular()">Calcular</button>
+	</div>
+</div>	
+
+<div class="row" style="margin-top:20px">
+	<div class="col-lg-12 col-md-12 col-xs-12">
+		<jqx-data-table jqx-settings="dataTableResult"></jqx-data-table>
+	</div>
+</div>	
+
