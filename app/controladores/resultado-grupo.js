@@ -7,7 +7,7 @@
  	  $scope.dataTableEvento1 =
             {
                 width: 370,   
-                height:200,           
+                height:100,           
                 source: new $.jqx.dataAdapter({
                     localData: [{}],
                     dataType: "json",
@@ -32,7 +32,7 @@
        $scope.dataTableEvento2 =
             {
                 width: 370,   
-                height:200,           
+                height:100,           
                 source: new $.jqx.dataAdapter({
                     localData: [{}],
                     dataType: "json",
@@ -56,22 +56,24 @@
 
          $scope.dataTableResult =
             {
-                width: 370,   
-                height:200,           
+                width: 380,   
+                height:100,           
                 source: new $.jqx.dataAdapter({
                     localData: [{}],
                     dataType: "json",
                     dataFields:
                     [                       
                         { name: 'EEV_CALI', type: 'string' },
-                        { name: 'PER_NOMB', type: 'string' }
+                        { name: 'PER_NOMB', type: 'string' },
+                        { name: 'PROD', type: 'string' }
                         
                     ]
                 }),
                 columnsResize: true,
                 columns: [                 
                   { text: 'Atributo', dataField: 'ATR_NOMB', width: 150 },
-                  { text: 'Calificación', dataField: 'EEV_CALI', width: 100 }
+                  { text: 'Calificación', dataField: 'EEV_CALI', width: 100 },
+                  { text: 'Prod', dataField: 'PROD', width: 100 }
 
                   
                 ]
@@ -177,22 +179,13 @@
   {
       var evento ={
       Accion:"S",
-      SQL:"SELECT  * FROM (" +
-          " SELECT A.ATR_NOMB,sum(EE.EEV_CALI) AS EEV_CALI FROM ESC_PROD_EVEN_ATRIB AS PEA " +
+      SQL:"SELECT A.ATR_NOMB,sum(EE.EEV_CALI) AS EEV_CALI,(sum(EE.EEV_CALI)*sum(EE.EEV_CALI)) AS PROD FROM ESC_PROD_EVEN_ATRIB AS PEA " +
         " INNER JOIN ESC_PROD_EVEN AS PE  ON PE.PRE_CONS = PEA.PEA_PREV_CONS " +
           " INNER JOIN ESC_EVEN AS E ON E.EVE_CODI = PE.PRE_EVEN_CODI " +
           " INNER JOIN ESC_ATRIB AS A ON A.ATR_CODI = PEA.PEA_ATRI_CODI " +
           " INNER JOIN ESC_ESCA_EVAL AS EE ON EE.EEV_CONS = PEA.PEA_ESEV_CONS " +
           " INNER JOIN ESC_PERS AS PER ON PER.PER_CODI = PEA.PEA_JUEZ_CODI " +
-          " WHERE  E.EVE_CODI=" + $scope.selEvento.EVE_CODI + " group by A.ATR_NOMB " +
-          " UNION ALL " + 
-          " SELECT A.ATR_NOMB,EE.EEV_CALI FROM ESC_PROD_EVEN_ATRIB AS PEA " +
-          " INNER JOIN ESC_PROD_EVEN AS PE  ON PE.PRE_CONS = PEA.PEA_PREV_CONS " +
-          " INNER JOIN ESC_EVEN AS E ON E.EVE_CODI = PE.PRE_EVEN_CODI " +
-          " INNER JOIN ESC_ATRIB AS A ON A.ATR_CODI = PEA.PEA_ATRI_CODI " +
-          " INNER JOIN ESC_ESCA_EVAL AS EE ON EE.EEV_CONS = PEA.PEA_ESEV_CONS " +
-          " INNER JOIN ESC_PERS AS PER ON PER.PER_CODI = PEA.PEA_JUEZ_CODI " +
-          " WHERE  E.EVE_CODI=" + $scope.selEvento2.EVE_CODI + " group by A.ATR_NOMB ) AS T" 
+          " WHERE  E.EVE_CODI=" + $scope.selEvento.EVE_CODI + " group by A.ATR_NOMB "           
 
        }
 
@@ -202,6 +195,31 @@
                     localData: result.data});     
 
        });
+
+
+         evento ={
+      Accion:"S",
+      SQL:"SELECT sum(EE.EEV_CALI) AS EEV_CALI,(sum(EE.EEV_CALI)*sum(EE.EEV_CALI)) AS PROD,Count(EE.EEV_CALI) AS total " +
+          " FROM ESC_PROD_EVEN_ATRIB AS PEA " +
+          " INNER JOIN ESC_PROD_EVEN AS PE  ON PE.PRE_CONS = PEA.PEA_PREV_CONS " +
+          " INNER JOIN ESC_EVEN AS E ON E.EVE_CODI = PE.PRE_EVEN_CODI " +
+          " INNER JOIN ESC_ATRIB AS A ON A.ATR_CODI = PEA.PEA_ATRI_CODI " +
+          " INNER JOIN ESC_ESCA_EVAL AS EE ON EE.EEV_CONS = PEA.PEA_ESEV_CONS " +
+          " INNER JOIN ESC_PERS AS PER ON PER.PER_CODI = PEA.PEA_JUEZ_CODI " +
+          " WHERE  E.EVE_CODI=" + $scope.selEvento.EVE_CODI + ""           
+
+       }
+
+       Execute.SQL(evento).then(function(result) { 
+
+          $scope.sumTotalEvento1 = result.data[0].EEV_CALI;
+          $scope.promedioEvento1 = result.data[0].EEV_CALI/result.data[0].total;
+          $scope.sumTotalCuadradoEvento1 = result.data[0].PROD;
+
+
+       });
+
+
 
   }
 

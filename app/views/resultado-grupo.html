@@ -7,7 +7,8 @@
 	</div>				
 	<div class="col-md-3 col-lg-3 col-xs-3">
 		<h5>EVENTO 2</h5>
-	</div>				
+	</div>	
+
 </div>
 
 
@@ -24,6 +25,9 @@
 	<div class="col-md-3 col-lg-3 col-xs-3">
 		<select class="form-control"  ng-model="selEvento2" 
           ng-options="evento2 as evento2.EVE_NOMB for evento2 in listEvento2" ng-change="onChangeEvento2()" required></select>		
+	</div>	
+	<div class="col-lg-3 col-md-3 col-xs-3">
+		<button class="btn btn-default"  ng-click="onClicCalcular()">Calcular</button>
 	</div>				
 </div>
 
@@ -37,15 +41,16 @@
 		<jqx-data-table jqx-settings="dataTableEvento2"></jqx-data-table>
 	</div
 </div>	
-<div class="row" style="margin-top:20px">
-	<div class="col-lg-3 col-md-3 col-xs-3">
-		<button class="btn btn-default"  ng-click="onClicCalcular()">Calcular</button>
-	</div>
-</div>	
+
 
 <div class="row" style="margin-top:20px">
 	<div class="col-lg-12 col-md-12 col-xs-12">
 		<jqx-data-table jqx-settings="dataTableResult"></jqx-data-table>
 	</div>
 </div>	
+<div class="row" style="margin-top:20px">
+	<label>Suma Total :{{sumTotalEvento1}}</label><br/>
+	<label>Promedio :{{promedioEvento1}}</label><br/>
+	<label>Suma Cuadrado :{{sumTotalCuadradoEvento1}}</label>
+</div>
 
