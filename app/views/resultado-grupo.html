@@ -44,13 +44,53 @@
 
 
 <div class="row" style="margin-top:20px">
-	<div class="col-lg-12 col-md-12 col-xs-12">
-		<jqx-data-table jqx-settings="dataTableResult"></jqx-data-table>
+	<div class="col-lg-6 col-md-6 col-xs-6">
+		<jqx-data-table jqx-settings="dataTableResultEvento1"></jqx-data-table>
+	</div>
+	<div class="col-lg-6 col-md-6 col-xs-6">
+		<jqx-data-table jqx-settings="dataTableResultEvento2"></jqx-data-table>
 	</div>
 </div>	
 <div class="row" style="margin-top:20px">
-	<label>Suma Total :{{sumTotalEvento1}}</label><br/>
-	<label>Promedio :{{promedioEvento1}}</label><br/>
-	<label>Suma Cuadrado :{{sumTotalCuadradoEvento1}}</label>
+	<div class="col-lg-6 col-md-6 col-xs-6">
+		<label>N :{{nEvento1}}</label><br/>
+		<label>Suma Total :{{sumTotalEvento1}}</label><br/>
+		<label>Promedio suma :{{promedioEvento1}}</label><br/>
+		<label>Suma Cuadrado :{{sumTotalCuadradoEvento1}}</label><br/>
+		<label>Promedio suma Cuadrado :{{sumPromedioCuadradoEvento1}}</label>
+	</div>
+	<div class="col-lg-6 col-md-6 col-xs-6">
+		<label>N :{{nEvento2}}</label><br/>
+		<label>Suma Total :{{sumTotalEvento2}}</label><br/>
+		<label>Promedio suma:{{promedioEvento2}}</label><br/>
+		<label>Suma Cuadrado :{{sumTotalCuadradoEvento2}}</label><br/>
+		<label>Promedio suma Cuadrado :{{sumPromedioCuadradoEvento2}}</label>
+	</div>
+</div>
+<div class="row" style="margin-top:20px">
+	<div class="col-lg-3 col-md-3 col-xs-3">
+		 <label>Resultado t-student = {{tStudent}}</label>
+			  <div class="row">
+			  	<div class="col-md-12 col-lg-12 col-xs-12">
+			  		<label>Valor Tabla</label>
+			  	</div>
+			  </div>
+			  <div class="row">	
+			  	<div class="col-md-6 col-lg-6 col-xs-6">
+			  		<input ng-model="value" class="form-control" ng-change="onChangeValue()" />
+			  	</div>
+			  </div>
+			   <div class="row">	
+			   	<div class="col-md-12 col-lg-12 col-xs-12">
+			   		{{txtResultado}}
+			   	</div>
+			   </div>
+	</div>	
+	<div class="col-lg-9 col-md-9 col-xs-9">
+		<jqx-panel jqx-settings="settingsPanel">
+			<img src="img\t-student.jpg">
+		</jqx-panel>		    	
+	</div		
+	 
 </div>
 
