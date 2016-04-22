@@ -6,12 +6,12 @@ angular.module('myApp')
 var NombreActual;	
 	if ($route.current.params.idCaracterizacion==0)
 	{
-		$scope.tiTulo = "Nueva Caracterización";
+		$scope.tiTulo = "Nueva Característica";
 		$scope.buttonText ="Guardar";
 	}
 	else
 	{
-		$scope.tiTulo = "Editar Caracterización";
+		$scope.tiTulo = "Editar Característica";
 		$scope.buttonText="Actualizar";
 	}
 

@@ -7,10 +7,8 @@ angular.module('myApp')
   var usr = $cookieStore.get('myUser');
 
     if (usr != null) {     
-      $scope.usrConectado.estaConectado = true;       
-      $scope.isAdmin=false;
-      if (usr[0].PER_TIPO==0) 
-         $scope.isAdmin =true;
+      $scope.usrConectado.estaConectado = true;                   
+      $scope.tipoUSER =usr[0].PER_TIPO;
     }
     else
     {
@@ -35,9 +33,7 @@ angular.module('myApp')
      var usr = $cookieStore.get('myUser');
       if (usr != null) { 
         $scope.nameConectado = usr[0].PER_NOMB + ' ' + usr[0].PER_APEL;
-       $scope.isAdmin=false;
-      if (usr[0].PER_TIPO==0) 
-         $scope.isAdmin =true;
+        $scope.tipoUSER =usr[0].PER_TIPO;
      }
   }	
 

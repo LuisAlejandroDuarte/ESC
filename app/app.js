@@ -5,7 +5,7 @@ angular.module('myApp', ['ngRoute','ngCookies','ngResource','jqwidgets','ngJqxse
 .run(function($rootScope, $location, $cookieStore) {
    $rootScope.$on('$routeChangeStart', function(event, next, current) {
     
-
+    var templateUrl;
       if ($cookieStore.get('conectado')==false || $cookieStore.get('conectado') == null) 
       {
           $location.path('/inicio');
@@ -16,9 +16,15 @@ angular.module('myApp', ['ngRoute','ngCookies','ngResource','jqwidgets','ngJqxse
            $location.path('/menu');            
          }
          if ( (next.templateUrl == 'views/usuario.html' && $cookieStore.get('myUser')[0].PER_TIPO!=0) || 
-               (next.templateUrl == 'views/edit-usuario.html' && $cookieStore.get('myUser')[0].PER_TIPO!=0)){
+              (next.templateUrl == 'views/edit-usuario.html' && $cookieStore.get('myUser')[0].PER_TIPO!=0) ||
+              (next.templateUrl == 'views/caracterizacion.html' && $cookieStore.get('myUser')[0].PER_TIPO!=0) || 
+              (next.templateUrl == 'views/edit-caracterizacion.html' && $cookieStore.get('myUser')[0].PER_TIPO!=0) ||
+              (next.templateUrl == 'views/atributo.html' && $cookieStore.get('myUser')[0].PER_TIPO!=0) || 
+              (next.templateUrl == 'views/edit-atributo.html' && $cookieStore.get('myUser')[0].PER_TIPO!=0)
+            )
+         {
              $cookieStore.remove('myUser');                        
-             $cookieStore.remove('conectado');
+             $cookieStore.remove('conectado');           
              $location.path("/inicio");
          }
       }
