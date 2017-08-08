@@ -17,7 +17,7 @@ var NombreActual;
 
 
 
-	  datosparametroEvaluacion.$promise.then(function(datos){   
+	  datosparametroEvaluacion.then(function(datos){   
 
 	  	$scope.Datos = datos[0];
 		NombreActual=datos[0].PEV_DESC;

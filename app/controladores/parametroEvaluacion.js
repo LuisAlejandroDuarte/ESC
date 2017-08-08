@@ -84,7 +84,7 @@
             
        var datos ={
             Accion:"S",
-           SQL:"SELECT PEV_CONS,PEV_DESC FROM ESC_PARA_EVAL"
+           SQL:"SELECT PEV_CONS,PEV_DESC FROM esc_para_eval"
         }
 
         $scope.options = {                                    

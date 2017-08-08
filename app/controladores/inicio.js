@@ -19,7 +19,7 @@ angular.module('myApp')
 
     	var datos ={
     		Accion:"S",
-    		SQL:"SELECT * FROM ESC_PERS WHERE  PER_USER='" + $scope.user + "' AND PER_PASS='" + $scope.pass + "'"
+    		SQL:"SELECT * FROM esc_pers WHERE  PER_USER='" + $scope.user + "' AND PER_PASS='" + $scope.pass + "'"
     	}
    
     	 Execute.SQL(datos).then(function(result) { 

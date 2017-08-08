@@ -186,9 +186,9 @@ $routeProvider.when('/parametroEvaluacion', {
           datosparametroEvaluacion: function($route,Execute){
             var parametroEvaluacionID = parseInt($route.current.params.idparametroEvaluacion);           
 
-               return    Execute.execute.query({Accion: 'S',
-                         SQL: "SELECT PEV_CONS,PEV_DESC FROM ESC_PARA_EVAL " + 
-                         " WHERE PEV_CONS =" + parametroEvaluacionID });
+               return    Execute.SQL({Accion: 'S',
+                         SQL: "SELECT pev_cons,pev_desc FROM esc_para_eval " + 
+                         " WHERE pev_cons =" + parametroEvaluacionID });
 
           }
         }

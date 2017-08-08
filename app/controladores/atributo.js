@@ -148,7 +148,7 @@
         };   
           var datos ={
             Accion:"S",
-           SQL:"SELECT ATR_CODI,ATR_NOMB As Atributo,C.CAR_NOMB As Caracterizacion FROM ESC_ATRIB AS A INNER  JOIN ESC_CARA AS C " +
+           SQL:"SELECT ATR_CODI,ATR_NOMB As Atributo,C.CAR_NOMB As Caracterizacion FROM esc_atrib AS A INNER  JOIN esc_cara AS C " +
                " ON C.CAR_CODI =A.ATR_CARA_CODI"
         }
          $('#jqxLoader').jqxLoader('open');
